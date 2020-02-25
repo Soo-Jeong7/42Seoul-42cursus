@@ -6,11 +6,11 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:01:41 by jko               #+#    #+#             */
-/*   Updated: 2020/02/25 02:21:34 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/25 20:02:12 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef long long size_t;
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
