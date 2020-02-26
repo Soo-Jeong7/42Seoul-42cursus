@@ -3,6 +3,63 @@
 #include <stdlib.h>
 #include "libft.h"
 
+int test_strlen(void)
+{
+	char *src = "abcd1234!";
+	int result = ft_strlen(src);
+	int result2 = strlen(src);
+	printf("%d, %d\n", result, result2);
+	if (result != result2)
+		return (0);
+	src = "abc21212fewafcce34!";
+	result = ft_strlen(src);
+	result2 = strlen(src);
+	printf("%d, %d\n", result, result2);
+	if (result != result2)
+		return (0);
+	src = "";
+	result = ft_strlen(src);
+	result2 = strlen(src);
+	printf("%d, %d\n", result, result2);
+	if (result != result2)
+		return (0);
+	return (1);
+}
+
+int test_memcmp(void)
+{
+	char *src1 = "abcd1234!";
+	char *src2 = "abcd1234!";
+	int result = ft_memcmp(src1, src2, 10);
+	int result2 = memcmp(src1, src2, 10);
+	//printf("%d, %d\n", result, result2);
+	if (result != result2)
+		return (0);
+	src1 = "abc21234!";
+	src2 = "abcd1234!";
+	result = ft_memcmp(src1, src2, 10);
+	result2 = memcmp(src1, src2, 10);
+	//printf("%d, %d\n", result, result2);
+	if (result != result2)
+		return (0);
+	return (1);
+}
+
+int test_memchr(void)
+{
+	char *src = "abcd1234!";
+	char *result;
+	char *result2;
+	for (int i = 0; i < 10; i++) {
+		result = ft_memchr(src, src[i], 10);
+		result2 = memchr(src, src[i], 10);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
 int test_memmove(void)
 {
 	char *src = "abcd1234!";
@@ -37,7 +94,6 @@ int test_memmove(void)
 	}
 	return (1);
 }
-
 
 int test_memccpy(void)
 {
@@ -113,6 +169,16 @@ int main(void)
 		printf("%s\n", "memccpy error");
 	if (!test_memmove())
 		printf("%s\n", "memmove error");
+	if (!test_memchr())
+		printf("%s\n", "memchr error");
+	if (!test_memcmp())
+		printf("%s\n", "memcmp error");
+	if (!test_strlen())
+		printf("%s\n", "strlen error");
 
+
+
+
+	return (0);
 }
 
