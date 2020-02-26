@@ -3,24 +3,76 @@
 #include <stdlib.h>
 #include "libft.h"
 
+int test_strlcat(void)
+{
+	size_t size = 15;
+	char *src = "abcd1234";
+	char *dst = (char*)malloc(sizeof(char) * size * 10);
+	char *dst2 = (char*)malloc(sizeof(char) * size * 10);
+	for (int i = 0; i <= size; ++i) {
+		ft_bzero(dst, size);
+		ft_bzero(dst2, size);
+		int result = ft_strlcat(dst, src, i);
+		int result2 = strlcat(dst2, src, i);
+		//printf("%d, %d\n", result, result2);
+		//printf("%s, %s\n", dst, dst2);
+		if (result != result2)
+			return (0);
+		if (ft_memcmp(dst, dst2, size) != 0)
+			return (0);
+	}
+	for (int i = 0; i <= size; ++i) {
+		int result = ft_strlcat(dst, src, i);
+		int result2 = strlcat(dst2, src, i);
+		//printf("%d, %d\n", result, result2);
+		//printf("%s, %s\n", dst, dst2);
+		if (result != result2)
+			return (0);
+		if (ft_memcmp(dst, dst2, size * 10) != 0)
+			return (0);
+	}
+	return (1);
+}
+
+int test_strlcpy(void)
+{
+	size_t size = 15;
+	char *src = "abcd1234!";
+	char *dst = (char*)malloc(sizeof(char) * size);
+	char *dst2 = (char*)malloc(sizeof(char) * size);
+	for (int i = 0; i <= size; ++i) {
+		ft_bzero(dst, size);
+		ft_bzero(dst2, size);
+		int result = ft_strlcpy(dst, src, i);
+		int result2 = strlcpy(dst2, src, i);
+		//printf("%d, %d\n", result, result2);
+		//printf("%s, %s\n", dst, dst2);
+		if (result != result2)
+			return (0);
+		if (ft_memcmp(dst, dst2, size) != 0)
+			return (0);
+	}
+	return (1);
+}
+
 int test_strlen(void)
 {
 	char *src = "abcd1234!";
 	int result = ft_strlen(src);
 	int result2 = strlen(src);
-	printf("%d, %d\n", result, result2);
+	//printf("%d, %d\n", result, result2);
 	if (result != result2)
 		return (0);
 	src = "abc21212fewafcce34!";
 	result = ft_strlen(src);
 	result2 = strlen(src);
-	printf("%d, %d\n", result, result2);
+	//printf("%d, %d\n", result, result2);
 	if (result != result2)
 		return (0);
 	src = "";
 	result = ft_strlen(src);
 	result2 = strlen(src);
-	printf("%d, %d\n", result, result2);
+	//printf("%d, %d\n", result, result2);
 	if (result != result2)
 		return (0);
 	return (1);
@@ -157,8 +209,60 @@ int test_memset(void)
 	return (1);
 }
 
+int test_strchr(void)
+{
+	char *src = "abcd1234!";
+	char *result;
+	char *result2;
+	for (int i = 0; i < 10; i++) {
+		result = ft_strchr(src, src[i]);
+		result2 = strchr(src, src[i]);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	char *charset = "A0B12";
+	for (int i = 0; i < 6; i++) {
+		result = ft_strchr(src, charset[i]);
+		result2 = strchr(src, charset[i]);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_strrchr(void)
+{
+	char *src = "abcd1234!";
+	char *result;
+	char *result2;
+	for (int i = 0; i < 10; i++) {
+		result = ft_strrchr(src, src[i]);
+		result2 = strrchr(src, src[i]);
+		printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	char *charset = "A0B12";
+	for (int i = 0; i < 6; i++) {
+		result = ft_strrchr(src, charset[i]);
+		result2 = strrchr(src, charset[i]);
+		printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+
 int main(void)
 {
+
+	if (!test_strrchr())
+		printf("%s\n", "strrchr error");
+	if (!test_strchr())
+		printf("%s\n", "strchr error");
 	if (!test_memset())
 		printf("%s\n", "memset error");
 	if (!test_bzero())
@@ -175,10 +279,10 @@ int main(void)
 		printf("%s\n", "memcmp error");
 	if (!test_strlen())
 		printf("%s\n", "strlen error");
-
-
-
-
+	if (!test_strlcpy())
+		printf("%s\n", "strlcpy error");
+	if (!test_strlcat())
+		printf("%s\n", "strlcat error");
 	return (0);
 }
 
