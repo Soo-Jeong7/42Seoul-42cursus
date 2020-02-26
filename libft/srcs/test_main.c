@@ -341,8 +341,77 @@ int test_strnstr(void)
 	return (1);
 }
 
+int test_atoi(void)
+{
+	int result;
+	int result2;
+	char str[100];
+	for (int i = -15; i < 15; ++i) {
+		sprintf(str, "%d", i);
+		result = ft_atoi(str);
+		result2 = atoi(str);
+		//printf("%s, %d, %d\n", str, result, result2);
+		if (result != result2)
+			return (0);
+	}
+	int temp = -2147483645;
+	for (int i = 0; i < 10; ++i) {
+		sprintf(str, "%d", temp - i);
+		result = ft_atoi(str);
+		result2 = atoi(str);
+		//printf("%s, %d, %d\n", str, result, result2);
+		if (result != result2)
+			return (0);
+	}
+	sprintf(str, " 	137-41hf");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "+ef13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "+31 13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "++31 13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "+-31 13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "--31 13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	sprintf(str, "-31 13");
+	result = ft_atoi(str);
+	result2 = atoi(str);
+	//printf("%s, %d, %d\n", str, result, result2);
+	if (result != result2)
+		return (0);
+	return (1);
+}
+
 int main(void)
 {
+	if (!test_atoi())
+		printf("%s\n", "atoi error");
 	if (!test_strnstr())
 		printf("%s\n", "strnstr error");
 	if (!test_strncmp())

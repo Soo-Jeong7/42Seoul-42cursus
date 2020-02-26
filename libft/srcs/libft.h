@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:06:45 by jko               #+#    #+#             */
-/*   Updated: 2020/02/26 22:44:53 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/26 23:39:23 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_atoi(const char *str);
 
 
 #endif
