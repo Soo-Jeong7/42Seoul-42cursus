@@ -240,7 +240,7 @@ int test_strrchr(void)
 	for (int i = 0; i < 10; i++) {
 		result = ft_strrchr(src, src[i]);
 		result2 = strrchr(src, src[i]);
-		printf("%p, %p\n", result, result2);
+		//printf("%p, %p\n", result, result2);
 		if (result != result2)
 			return (0);
 	}
@@ -248,17 +248,105 @@ int test_strrchr(void)
 	for (int i = 0; i < 6; i++) {
 		result = ft_strrchr(src, charset[i]);
 		result2 = strrchr(src, charset[i]);
-		printf("%p, %p\n", result, result2);
+		//printf("%p, %p\n", result, result2);
 		if (result != result2)
 			return (0);
 	}
 	return (1);
 }
 
+int test_strncmp(void)
+{
+	int result;
+	int result2;
+	char *src1 = "abcd1234!";
+	char *src2 = "abcd1234!";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strncmp(src1, src2, i);
+		result2 = strncmp(src1, src2, i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!";
+	src2 = "abcd1";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strncmp(src1, src2, i);
+		result2 = strncmp(src1, src2, i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!";
+	src2 = "abcd1nfeowinaawe";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strncmp(src1, src2, i);
+		result2 = strncmp(src1, src2, i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!";
+	src2 = "abcd1234!winaawe";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strncmp(src1, src2, i);
+		result2 = strncmp(src1, src2, i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_strnstr(void)
+{
+	char *result;
+	char *result2;
+	char *src1 = "abcd1234!";
+	char *src2 = "abcd1234!";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strnstr(src1, src2, i);
+		result2 = strnstr(src1, src2, i);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!131";
+	src2 = "abcd1";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strnstr(src1, src2, i);
+		result2 = strnstr(src1, src2, i);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!";
+	src2 = "abcd1nfeowinaawe";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strnstr(src1, src2, i);
+		result2 = strnstr(src1, src2, i);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	src1 = "abcd1234!";
+	src2 = "abcd1234!winaawe";
+	for (int i = 0; i < 20; i++) {
+		result = ft_strnstr(src1, src2, i);
+		result2 = strnstr(src1, src2, i);
+		//printf("%p, %p\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
 
 int main(void)
 {
-
+	if (!test_strnstr())
+		printf("%s\n", "strnstr error");
+	if (!test_strncmp())
+		printf("%s\n", "strncmp error");
 	if (!test_strrchr())
 		printf("%s\n", "strrchr error");
 	if (!test_strchr())
