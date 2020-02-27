@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   isdigit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 13:45:13 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 12:39:25 by jko              ###   ########.fr       */
+/*   Created: 2020/02/27 11:01:45 by jko               #+#    #+#             */
+/*   Updated: 2020/02/27 11:02:53 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_isdigit(int c)
 {
-	size_t	len;
+	unsigned char	c2;
 
-	if (s == 0)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	c2 = (unsigned char)c;
+	if (c2 >= '0' && c2 <= '9')
+		return (1);
+	return (0);
 }

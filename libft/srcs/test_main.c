@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -408,8 +409,178 @@ int test_atoi(void)
 	return (1);
 }
 
+int test_isalpha(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_isalpha(i);
+		result2 = isalpha(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_isdigit(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_isdigit(i);
+		result2 = isdigit(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_isalnum(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_isalnum(i);
+		result2 = isalnum(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_isascii(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_isascii(i);
+		result2 = isascii(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_isprint(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_isprint(i);
+		result2 = isprint(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_toupper(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_toupper(i);
+		result2 = toupper(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_tolower(void)
+{
+	int result;
+	int result2;
+	for (int i = -3; i < 260; i++) {
+		result = ft_tolower(i);
+		result2 = tolower(i);
+		//printf("%d, %d\n", result, result2);
+		if (result != result2)
+			return (0);
+	}
+	return (1);
+}
+
+int test_calloc(void)
+{
+	size_t size = 10;
+	char *result = ft_calloc(size, sizeof(char));
+	char *result2 = calloc(size, sizeof(char));
+	if (memcmp(result, result, sizeof(char) * size) != 0)
+		return (0);
+	return (1);
+}
+
+int test_strdup(void)
+{
+	char *str = "";
+	char *result = ft_strdup(str);
+	char *result2 = strdup(str);
+	//printf("%s, %s, %s\n", str, result, result2);
+	if (strcmp(result, result2) != 0)
+		return (0);
+	str = "ewae fealknewn231uh";
+	result = ft_strdup(str);
+	result2 = strdup(str);
+	//printf("%s, %s, %s\n", str, result, result2);
+	if (strcmp(result, result2) != 0)
+		return (0);
+// strdup는 null pointer에 대한 에러처리가 없음
+//	str = 0;
+//	result = ft_strdup(str);
+//	result2 = strdup(str);
+//	if ((result == 0 && result2 == 0) ||strcmp(result, result2) != 0)
+//		return (0);
+	return (1);
+}
+
+
+//int test_listnew()
+//{
+//        char *str = "hello world!";
+//        t_list *new = ft_lstnew(str);
+//        if (new == 0)
+//        {
+//                printf("error\n");
+//                return 1;
+//        }
+//        printf("new = %p\n", new);
+//        printf("content = %s\n", (char *)(new->content));
+//        printf("next = %p\n", new->next);
+//        return 0;
+//}
+
 int main(void)
 {
+//	if (!test_())
+//		printf("%s\n", " error");
+
+
+
+	if (!test_strdup())
+		printf("%s\n", "strdup error");
+	if (!test_calloc())
+		printf("%s\n", "calloc error");
+	if (!test_tolower())
+		printf("%s\n", "tolower error");
+	if (!test_toupper())
+		printf("%s\n", "toupper error");
+	if (!test_isprint())
+		printf("%s\n", "isprint error");
+	if (!test_isascii())
+		printf("%s\n", "isascii error");
+	if (!test_isalnum())
+		printf("%s\n", "isalnum error");
+	if (!test_isdigit())
+		printf("%s\n", "isdigit error");
+	if (!test_isalpha())
+		printf("%s\n", "isalpha error");
 	if (!test_atoi())
 		printf("%s\n", "atoi error");
 	if (!test_strnstr())
@@ -442,4 +613,3 @@ int main(void)
 		printf("%s\n", "strlcat error");
 	return (0);
 }
-

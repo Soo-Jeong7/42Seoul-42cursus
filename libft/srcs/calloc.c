@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   calloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 13:45:13 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 12:39:25 by jko              ###   ########.fr       */
+/*   Created: 2020/02/27 12:06:40 by jko               #+#    #+#             */
+/*   Updated: 2020/02/27 12:10:31 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	len;
+	void	*result;
 
-	if (s == 0)
+	result = malloc(size * count);
+	if (result == 0)
 		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	ft_bzero(result, size * count);
+	return (result);
 }

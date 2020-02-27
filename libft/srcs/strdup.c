@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   strdup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 13:45:13 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 12:39:25 by jko              ###   ########.fr       */
+/*   Created: 2020/02/27 12:17:51 by jko               #+#    #+#             */
+/*   Updated: 2020/02/27 12:22:12 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strdup(const char *s1)
 {
 	size_t	len;
+	size_t	i;
+	char	*result;
 
-	if (s == 0)
+	len = ft_strlen(s1);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (result == 0)
 		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	i = 0;
+	while (i < len)
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	result[len] = 0;
+	return (result);
 }
