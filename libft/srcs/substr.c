@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memchr.c                                           :+:      :+:    :+:   */
+/*   substr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 11:37:58 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 16:43:54 by jko              ###   ########.fr       */
+/*   Created: 2020/02/27 13:01:36 by jko               #+#    #+#             */
+/*   Updated: 2020/02/27 14:54:44 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t		i;
-	unsigned char	*s2;
-	unsigned char	c2;
+	size_t	s_len;
+	char	*result;
 
-	s2 = (unsigned char *)s;
-	c2 = (unsigned char)c;
-	i = 0;
-	while (i < n)
-	{
-		if (s2[i] == c2)
-			return (s2 + i);
-		i++;
-	}
-	return (0);
+	if (s == 0)
+		return (0);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_calloc(1, sizeof(char)));
+	s_len -= start;
+	len = (len < s_len ? len : s_len) + 1;
+	result = (char *)malloc(sizeof(char) * len);
+	if (result == 0)
+		return (0);
+	ft_strlcpy(result, s + start, len);
+	return (result);
 }

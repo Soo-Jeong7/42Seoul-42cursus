@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 23:39:31 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 00:03:58 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/27 14:56:37 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		ft_atoi(const char *str)
 	size_t	i;
 	int	result;
 	int	sign;
-	char	c;
 
 	i = pass_whitespace(str);
 	sign = 1;

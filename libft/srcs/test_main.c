@@ -512,7 +512,7 @@ int test_calloc(void)
 	size_t size = 10;
 	char *result = ft_calloc(size, sizeof(char));
 	char *result2 = calloc(size, sizeof(char));
-	if (memcmp(result, result, sizeof(char) * size) != 0)
+	if (memcmp(result, result2, sizeof(char) * size) != 0)
 		return (0);
 	return (1);
 }
@@ -540,6 +540,62 @@ int test_strdup(void)
 	return (1);
 }
 
+int test_substr(void)
+{
+	char *str = "abcdef123456!@#$%";
+	unsigned int start;
+	size_t len;
+	for (start = 0; start < 20; ++start) {
+		for (len = 0; len < 20; ++len) {
+			char *result = ft_substr(str, start, len);
+			printf("%s\n", result);
+			free(result);
+		}
+	}
+	return (1);
+}
+
+int test_strjoin(void)
+{
+	char *s1 = "abcdef";
+	char *s2 = "123456";
+	char *result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	s1 = "";
+	s2 = "123456";
+	result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	s1 = "abcdef";
+	s2 = "";
+	result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	s1 = 0;
+	s2 = "123456";
+	result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	s1 = "abcdef";
+	s2 = 0;
+	result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	s1 = 0;
+	s2 = 0;
+	result = ft_strjoin(s1, s2);
+	printf("%s + %s = %s\n", s1, s2, result);
+	free(result);
+
+	return (1);
+}
+
 
 //int test_listnew()
 //{
@@ -558,11 +614,18 @@ int test_strdup(void)
 
 int main(void)
 {
+	if (!test_substr())
+		printf("%s\n", "substr error");
+
+
+
 //	if (!test_())
 //		printf("%s\n", " error");
 
 
 
+	if (!test_strjoin())
+		printf("%s\n", "strjoin error");
 	if (!test_strdup())
 		printf("%s\n", "strdup error");
 	if (!test_calloc())
