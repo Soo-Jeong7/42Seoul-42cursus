@@ -1,7 +1,6 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
 int test_strlcat(void)
@@ -596,6 +595,111 @@ int test_strjoin(void)
 	return (1);
 }
 
+int test_strtrim(void)
+{
+	char *s1 = "abcdef";
+	char *s2 = "123456";
+	char *answer = "abcdef";
+	char *result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	int check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "";
+	s2 = "123456";
+	answer = "";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "abcdef";
+	s2 = "";
+	answer = "abcdef";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = 0;
+	s2 = "123456";
+	answer = 0;
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = result == answer ? 0 : 1;
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "abcdef";
+	s2 = 0;
+	answer = 0;
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = result == answer ? 0 : 1;
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = 0;
+	s2 = 0;
+	answer = 0;
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = result == answer ? 0 : 1;
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "16abc";
+	s2 = "123456";
+	answer = "abc";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "abc42";
+	s2 = "123456";
+	answer = "abc";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "abc42a";
+	s2 = "123456";
+	answer = "abc42a";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+
+	s1 = "a22abc42";
+	s2 = "123456";
+	answer = "a22abc";
+	result = ft_strtrim(s1, s2);
+	//printf("%s, %s -> %s\n", s1, s2, result);
+	check = strcmp(result, answer);
+	free(result);
+	if (check != 0)
+		return (0);
+	return (1);
+}
+
+
 
 //int test_listnew()
 //{
@@ -616,7 +720,8 @@ int main(void)
 {
 	if (!test_substr())
 		printf("%s\n", "substr error");
-
+	if (!test_strjoin())
+		printf("%s\n", "strjoin error");
 
 
 //	if (!test_())
@@ -624,8 +729,8 @@ int main(void)
 
 
 
-	if (!test_strjoin())
-		printf("%s\n", "strjoin error");
+	if (!test_strtrim())
+		printf("%s\n", "strtrim error");
 	if (!test_strdup())
 		printf("%s\n", "strdup error");
 	if (!test_calloc())
