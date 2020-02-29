@@ -639,10 +639,10 @@ int test_strtrim(void)
 
 	s1 = "abcdef";
 	s2 = 0;
-	answer = 0;
+	answer = "abcdef";
 	result = ft_strtrim(s1, s2);
 	//printf("%s, %s -> %s\n", s1, s2, result);
-	check = result == answer ? 0 : 1;
+	check = strcmp(result, answer);
 	free(result);
 	if (check != 0)
 		return (0);
@@ -699,6 +699,77 @@ int test_strtrim(void)
 	return (1);
 }
 
+int test_split(void)
+{
+	char *s1 = "abcdef";
+	char c = 'c';
+	char **result = ft_split(s1, c);
+	printf("split result = %p\n", result);
+	for (int i = 0; result[i]; ++i) {
+		printf("%d -> %s\n", i, result[i]);
+	}
+	return (1);
+}
+
+int test_itoa(void)
+{
+	int s = 0;
+	char *answer = "0";
+	char *result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = 1;
+	answer = "1";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = -1;
+	answer = "-1";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = 10;
+	answer = "10";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = -10;
+	answer = "-10";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = 100;
+	answer = "100";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = -100;
+	answer = "-100";
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = INT_MAX;
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (atoi(result) != INT_MAX)
+		return (0);
+	s = INT_MIN;
+	result = ft_itoa(s);
+	printf("%d, %s\n", s, result);
+	if (atoi(result) != INT_MIN)
+		return (0);
+	return (1);
+}
+
+
+
 
 
 //int test_listnew()
@@ -727,8 +798,10 @@ int main(void)
 //	if (!test_())
 //		printf("%s\n", " error");
 
-
-
+	if (!test_itoa())
+		printf("%s\n", "itoa error");
+	if (!test_split())
+		printf("%s\n", "split error");
 	if (!test_strtrim())
 		printf("%s\n", "strtrim error");
 	if (!test_strdup())

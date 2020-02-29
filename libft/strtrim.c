@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:29:51 by jko               #+#    #+#             */
-/*   Updated: 2020/02/28 13:04:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/28 22:54:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ char		*ft_strtrim(char const *s1, char const *set)
 	size_t	len;
 	char	*result;
 
-	if (s1 == 0 || set == 0)
+	if (s1 == 0)
 		return (0);
+	if (set == 0)
+		return (ft_strdup(s1));
 	len = ft_strlen(s1);
 	front = get_front_index(s1, set, len);
 	back = get_back_index(s1, set, len);
+	if (front >= back)
+		return (ft_strdup(""));
 	if ((result = (char *)malloc(sizeof(char) * (back - front + 1))) == 0)
 		return (0);
 	ft_strlcpy(result, s1 + front, back - front + 1);

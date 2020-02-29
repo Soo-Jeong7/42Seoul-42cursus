@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 12:19:34 by jko               #+#    #+#             */
-/*   Updated: 2020/02/26 12:25:21 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/28 22:32:26 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*ss1;
 	unsigned char	*ss2;
 
+	if ((s1 == 0 && s2 == 0) || n == 0)
+		return (0);
+	else if (s1 == 0 || s2 == 0)
+		return (s1 == 0 ? -1 : 1);
 	ss1 = (unsigned char *)s1;
 	ss2 = (unsigned	char *)s2;
 	i = 0;
@@ -27,5 +31,5 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 			return (ss1[i] - ss2[i]);
 		i++;
 	}
-	return (ss1[i] - ss2[i]);
+	return (0);
 }

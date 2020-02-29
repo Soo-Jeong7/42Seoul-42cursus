@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 13:26:14 by jko               #+#    #+#             */
-/*   Updated: 2020/02/28 17:13:10 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/29 00:11:43 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	get_word_count(char *s, char c)
 		}
 		i++;
 	}
-	if (s[i - 1] != c)
+	if (s[i - 1] != 0)
 		count++;
 	return (count);
 }
@@ -81,8 +81,8 @@ static char	**fill_words(char *s, int count)
 		{
 			if ((result[j] = ft_strdup(s + i)) == 0)
 				return (free_arr(result));
-			j++;
 			i += ft_strlen(result[j]);
+			j++;
 		}
 		i++;
 	}
