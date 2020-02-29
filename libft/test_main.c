@@ -768,6 +768,33 @@ int test_itoa(void)
 	return (1);
 }
 
+char strmapi_func(unsigned int i, char c)
+{
+	i++;
+	return (c);
+}
+
+int test_strmapi(void)
+{
+	char *s = "";
+	char *answer = "";
+	char *result = ft_strmapi(s, &strmapi_func);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = "abc";
+	answer = "abc";
+	result = ft_strmapi(s, &strmapi_func);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	s = "123";
+	answer = "123";
+	result = ft_strmapi(s, &strmapi_func);
+	if (strcmp(result, answer) != 0)
+		return (0);
+	return (1);
+}
+
+
 
 
 
@@ -798,6 +825,9 @@ int main(void)
 //	if (!test_())
 //		printf("%s\n", " error");
 
+
+	if (!test_strmapi())
+		printf("%s\n", "strmapi error");
 	if (!test_itoa())
 		printf("%s\n", "itoa error");
 	if (!test_split())

@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/02/29 00:18:28 by jko              ###   ########.fr        #
+#    Updated: 2020/02/29 17:12:10 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,12 @@ FILES = memset \
 	strjoin \
 	strtrim \
 	split \
-	itoa
+	itoa \
+	strmapi \
+	putchar_fd \
+	putstr_fd \
+	putendl_fd \
+	putnbr_fd
 
 
 SRCS_DIR = ./
