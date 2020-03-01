@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstclear.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/01 21:51:17 by jko               #+#    #+#             */
-/*   Updated: 2020/03/02 01:16:05 by jko              ###   ########.fr       */
+/*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
+/*   Updated: 2020/03/01 23:46:26 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list *curr;
-	t_list *next;
+# include <stdlib.h>
+# include <unistd.h>
 
-	if (lst == 0 || *lst == 0 || del == 0)
-		return ;
-	curr = *lst;
-	*lst = 0;
-	while (curr)
-	{
-		next = curr->next;
-		ft_lstdelone(curr, del);
-		curr = next;
-	}
-}
+int	get_next_line(int fd, char **line);
+
+#endif
