@@ -6,12 +6,14 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/02/29 17:12:10 by jko              ###   ########.fr        #
+#    Updated: 2020/03/01 22:27:21 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+
+NAME = libft.a
 
 FILES = memset \
 	bzero \
@@ -48,14 +50,24 @@ FILES = memset \
 	putendl_fd \
 	putnbr_fd
 
+FILES_B = lstnew \
+	  lstadd_front \
+	  lstsize \
+	  lstlast \
+	  lstadd_back \
+	  lstdelone \
+	  lstclear \
+	  lstiter \
+	  lstmap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
+SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
+OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
-NAME = libft.a
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -64,14 +76,17 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 $(NAME): $(OBJS)
 	ar rcs $@ $^ 
 
+bonus: $(OBJS_B)
+	ar rcs $(NAME) $^
+
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_B)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: clean all
 
-.PHONY: all clean fclean re
+.PHONY: bonus all clean fclean re
