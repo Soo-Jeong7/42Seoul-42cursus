@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 21:58:15 by jko               #+#    #+#             */
-/*   Updated: 2020/03/01 22:32:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/01 23:05:15 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		if ((temp = ft_lstnew(f(lst->content))) == 0)
 		{
 			ft_lstclear(&new_head, del);
-			break ;
+			return (0);
 		}
 		curr->next = temp;
 		curr = temp;
