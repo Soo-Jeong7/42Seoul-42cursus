@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 21:51:17 by jko               #+#    #+#             */
-/*   Updated: 2020/03/02 01:16:05 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/03 23:03:19 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list *curr;
 	t_list *next;
 
-	if (lst == 0 || *lst == 0 || del == 0)
+	if (lst == 0 || del == 0)
 		return ;
 	curr = *lst;
 	*lst = 0;
