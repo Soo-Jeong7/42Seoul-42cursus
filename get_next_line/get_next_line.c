@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/03/02 17:41:21 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/05 17:51:52 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ static char	*read_fd(void)
 	char	buf[BUFFER_SIZE];
 	char	*result;
 	ssize_t	read_size;
-	size_t	cut_index;
 
 	read_size = read(info.fd, buf, BUFFER_SIZE);
 	if (read_size <= 0)
@@ -110,17 +109,25 @@ static char	*read_fd(void)
 			info.isEof = TRUE;
 		return (0);
 	}
-	if (info.before != 0 || !add_info_before(buf, read_size))
+	if (info.before == 0 || !add_info_before(buf, read_size))
 		return (0);
-	cut_index = (size_t)ft_memchr(buf, '\n', read_size) - (size_t)buf;
+	return (info.before);
+}
+
+static bool	cut_line(char **line)
+{
 
 }
 
 int	get_next_line(int fd, char **line)
 {
-
 	if (fd < 0 || line == 0)
 		return (-1);
 	set_fd_info(fd);
-
+	while (!cut_line(line))
+	{
+		if (read_fd() == 0)
+			return (info.isEof ? 0 : -1);
+	}
+	return (1);
 }
