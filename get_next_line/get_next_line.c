@@ -6,13 +6,16 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/03/05 17:51:52 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/07 14:59:10 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 4096
+#endif
+
 # define TRUE 1
 # define FALSE 0
 
@@ -23,7 +26,7 @@ typedef struct	s_fd_info
 	char	*before;
 	size_t	before_size;
 	int	fd;
-	bool	isEof;	
+	bool	isEof;
 }		t_fd_info;
 
 static t_fd_info info = {0, 0, -1, FALSE};
@@ -34,46 +37,11 @@ static void	set_fd_info(int fd)
 		return ;
 	info.fd = fd;
 	info.before = 0;
+	info.before_size = 0;
 	info.isEof = FALSE;
 }
 
-static void	*ft_memchr(void *addr, int c, size_t size)
-{
-	size_t i;
-	unsigned char	*addr2;
-	unsigned char	c2;
 
-	addr2 = (unsigned char *)addr;
-	c2 = (unsigned char)c;
-	i = 0;
-	while (i < size)
-	{
-		if (addr2[i] == c2)
-			return (addr + i);
-		i++;
-	}
-	return (0);
-}
-
-static	void	*ft_memcpy(void *dst, void *src, size_t n)
-{
-	size_t		i;
-	unsigned char	*dst2;
-	unsigned char	*src2;
-
-
-	if (dst == 0 || src == 0)
-		return (0);
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		dst2[i] = src2[i];
-		i++;
-	}
-	return (dst);
-}
 
 static bool	add_info_before(char str[], ssize_t read_size)
 {
@@ -83,7 +51,10 @@ static bool	add_info_before(char str[], ssize_t read_size)
 		return (FALSE);
 	if (info.before == 0 || info.before_size == 0)
 	{
-		info.before = str;
+		if (!(info.before = (char *)malloc(info.before_size)))
+			return (FALSE);
+		ft_memcpy(info.before, str, read_size);
+		info.before_size = read_size;
 		return (TRUE);
 	}
 	if (!(result = (char *)malloc(info.before_size + read_size)))
@@ -99,35 +70,98 @@ static bool	add_info_before(char str[], ssize_t read_size)
 static char	*read_fd(void)
 {
 	char	buf[BUFFER_SIZE];
-	char	*result;
 	ssize_t	read_size;
 
 	read_size = read(info.fd, buf, BUFFER_SIZE);
-	if (read_size <= 0)
-	{
-		if (read_size == 0)
-			info.isEof = TRUE;
+	if (read_size < 0)
 		return (0);
-	}
-	if (info.before == 0 || !add_info_before(buf, read_size))
+	if (read_size == 0)
+		info.isEof = TRUE;
+	if (info.isEof && info.before_size == 0)
+		return (0);
+	//if (info.before == 0 && !add_info_before(buf, read_size))
+	if (!add_info_before(buf, read_size))
 		return (0);
 	return (info.before);
 }
 
-static bool	cut_line(char **line)
+static int	cut_line(char **line)
 {
+	char	*cut_addr;
+	size_t	i;
 
+	if (line == 0)
+		return (-1);
+	if ((info.before_size == 0
+			|| !(cut_addr = ft_memchr(info.before, '\n', info.before_size)))
+			&& !info.isEof)
+		return (1);
+	if (cut_addr == 0 && info.isEof)
+	{
+		if (!(*line = (char *)malloc(info.before_size + 1)))
+			return (-1);
+		ft_memcpy(*line, info.before, info.before_size);
+		(*line)[info.before_size] = 0;
+		return (0);
+	}
+	i = cut_addr - info.before + 1;
+	if (i == 1 && info.before[0] == 0)
+		return (1);
+	if (!(*line = (char *)malloc(sizeof(char) * i)))
+		return (-1);
+	ft_memcpy(*line, info.before, i);
+	(*line)[i - 1] = 0;
+	info.before_size -= i;
+	ft_memcpy(info.before, info.before + i, info.before_size);
+	return (0);
 }
 
 int	get_next_line(int fd, char **line)
 {
+	int cut_result;
+
 	if (fd < 0 || line == 0)
 		return (-1);
 	set_fd_info(fd);
-	while (!cut_line(line))
+	if (info.isEof && info.before_size == 0)
+		return (0);
+	while ((cut_result = cut_line(line)) > 0)
 	{
 		if (read_fd() == 0)
+		{
 			return (info.isEof ? 0 : -1);
+		}
 	}
+	if (cut_result < 0)
+		return (-1);
+	if (info.isEof && info.before_size == 0)
+		return (0);
 	return (1);
+}
+
+
+#include <fcntl.h>
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+	//int fd = open("1.txt", O_RDONLY);
+	int fd = open("test_text", O_RDONLY);
+	if (fd < 0)
+	{
+		printf("file open error\n");
+		return 0;
+	}
+	char *line;
+
+	while (get_next_line(fd, &line) > 0)
+	{
+		printf("main print = %s\n", line);
+		free(line);
+	}
+	printf("%s\n", line);
+	free(line);
+	
+	system("leaks a.out > leaks_result");
+	return 0;
 }
