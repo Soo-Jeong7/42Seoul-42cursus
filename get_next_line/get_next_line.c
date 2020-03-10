@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/03/10 23:27:17 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/11 01:17:33 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,21 @@ typedef struct	s_info
 
 static t_info	info = {0, -1, 0};
 
-int	join(t_info *info, char buf[BUFFER_SIZE + 1])
+int	join(t_info *info, char buf[BUFFER_SIZE + 1], int read_size)
 {
 	char	*temp;
-	size_t	buf_len;
 	size_t	i;
 	size_t	j;
 
-	if ((buf_len = ft_strlen(buf)) <= 0)
+	if (read_size <= 0)
 		return (-1);
 	if (info->remainder == 0)
 	{
-		if ((info->remainder = malloc(buf_len + 1)) == 0)
+		if ((info->remainder = malloc(read_size + 1)) == 0)
 			return (-1);
-		return (ft_strlcpy(info->remainder, buf, buf_len + 1));	
+		return (ft_strlcpy(info->remainder, buf, read_size + 1));	
 	}
-	i = ft_strlen(info->remainder) + buf_len + 1;
+	i = ft_strlen(info->remainder) + read_size + 1;
 	if ((temp = malloc(i)) == 0)
 		return (-1);
 	j = ft_strlcpy(temp, info->remainder, i);
@@ -69,7 +68,7 @@ int	split_and_save(t_info *info, char **line, char *cut_addr)
 	char	*temp;
 	size_t	len;
 
-	if ((*line = malloc(cut_addr - info->remainder)) == 0)
+	if ((*line = malloc(cut_addr - info->remainder + 1)) == 0)
 		return (-1);
 	ft_strlcpy(*line, info->remainder, cut_addr - info->remainder + 1);
 	len = ft_strlen(cut_addr + 1);
@@ -106,12 +105,13 @@ int	get_next_line(int fd, char **line)
 		if ((read_size = read(info.fd, buf, BUFFER_SIZE)) <= 0)
 			return (return_all(&info, line, read_size));
 		buf[read_size] = 0;
-		if (join(&info, buf) == -1)
+		if (join(&info, buf, read_size) == -1)
 			return (-1);
 	}
 	return (split_and_save(&info, line, cut_addr));
 }
 
+/*
 #include <fcntl.h>
 #include <stdio.h>
 int main(int argc, char *argv[])
@@ -129,18 +129,21 @@ int main(int argc, char *argv[])
 	}
 	
 
-	char *line;
+	char *line[4];
 
+	int i = 0;
 	int gnl_result;
-	while ((gnl_result = get_next_line(fd, &line)) > 0)
+	while ((gnl_result = get_next_line(fd, &line[i])) > 0)
 	{
 		//printf("gnl_result = %d\n", gnl_result);
-		printf("%s\n", line);
-		free(line);
+		printf("%s\n", line[i]);
+		i++;
+		//free(line);
 	}
 	//printf("gnl_result = %d\n", gnl_result);
-	printf("%s\n", line);
-	free(line);
+	printf("%s\n", line[i]);
+	//free(line);
 	system("leaks a.out > leaks_result");
 	return 0;
 }
+ */
