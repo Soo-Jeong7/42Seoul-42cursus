@@ -6,22 +6,15 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/03/11 01:17:33 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/11 02:18:38 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-typedef struct	s_info
-{
-	char	*remainder;
-	int	fd;
-	int	is_eof;
-}		t_info;
+static char	*info[OPEN_MAX];
 
-static t_info	info = {0, -1, 0};
-
-int	join(t_info *info, char buf[BUFFER_SIZE + 1], int read_size)
+static int	join(int fd, char buf[BUFFER_SIZE + 1], int read_size)
 {
 	char	*temp;
 	size_t	i;
@@ -29,60 +22,58 @@ int	join(t_info *info, char buf[BUFFER_SIZE + 1], int read_size)
 
 	if (read_size <= 0)
 		return (-1);
-	if (info->remainder == 0)
+	if (info[fd] == 0)
 	{
-		if ((info->remainder = malloc(read_size + 1)) == 0)
+		if ((info[fd] = malloc(read_size + 1)) == 0)
 			return (-1);
-		return (ft_strlcpy(info->remainder, buf, read_size + 1));	
+		return (ft_strlcpy(info[fd], buf, read_size + 1));	
 	}
-	i = ft_strlen(info->remainder) + read_size + 1;
+	i = ft_strlen(info[fd]) + read_size + 1;
 	if ((temp = malloc(i)) == 0)
 		return (-1);
-	j = ft_strlcpy(temp, info->remainder, i);
+	j = ft_strlcpy(temp, info[fd], i);
 	ft_strlcpy(temp + j, buf, i);
-	free(info->remainder);
-	info->remainder = temp;
+	free(info[fd]);
+	info[fd] = temp;
 	return (1);
 }
 
-int	return_all(t_info *info, char **line, int read_size)
+static int	return_all(int fd, char **line, int read_size)
 {
 	if (read_size < 0)
 		return (-1);
-	if (info->remainder != 0)
+	if (info[fd] != 0)
 	{
-		*line = info->remainder;
-		info->remainder = 0;
-		info->is_eof = 1;
+		*line = info[fd];
+		info[fd] = 0;
 		return (0);
 	}
 	if ((*line = malloc(1)) == 0)
 		return (-1);
 	(*line)[0] = 0;
-	info->is_eof = 1;
 	return (0);
 }
 
-int	split_and_save(t_info *info, char **line, char *cut_addr)
+static int	split_and_save(int fd, char **line, char *cut_addr)
 {
 	char	*temp;
 	size_t	len;
 
-	if ((*line = malloc(cut_addr - info->remainder + 1)) == 0)
+	if ((*line = malloc(cut_addr - info[fd] + 1)) == 0)
 		return (-1);
-	ft_strlcpy(*line, info->remainder, cut_addr - info->remainder + 1);
+	ft_strlcpy(*line, info[fd], cut_addr - info[fd] + 1);
 	len = ft_strlen(cut_addr + 1);
 	if (len == 0)
 	{
-		free(info->remainder);
-		info->remainder = 0;
+		free(info[fd]);
+		info[fd] = 0;
 		return (1);
 	}
 	if ((temp = malloc(len + 1)) == 0)
 		return (-1);
 	ft_strlcpy(temp, cut_addr + 1, len + 1);
-	free(info->remainder);
-	info->remainder = temp;
+	free(info[fd]);
+	info[fd] = temp;
 	return (1);
 }
 
@@ -94,56 +85,13 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == 0)
 		return (-1);
-	if (info.fd != fd)
+	while ((cut_addr = ft_strchr(info[fd], '\n')) == 0)
 	{
-		info.fd = fd;
-		info.remainder = 0;
-		info.is_eof = 0;
-	}
-	while ((cut_addr = ft_strchr(info.remainder, '\n')) == 0)
-	{
-		if ((read_size = read(info.fd, buf, BUFFER_SIZE)) <= 0)
-			return (return_all(&info, line, read_size));
+		if ((read_size = read(fd, buf, BUFFER_SIZE)) <= 0)
+			return (return_all(fd, line, read_size));
 		buf[read_size] = 0;
-		if (join(&info, buf, read_size) == -1)
+		if (join(fd, buf, read_size) == -1)
 			return (-1);
 	}
-	return (split_and_save(&info, line, cut_addr));
+	return (split_and_save(fd, line, cut_addr));
 }
-
-/*
-#include <fcntl.h>
-#include <stdio.h>
-int main(int argc, char *argv[])
-{
-	int fd;
-
-	if (argc == 1)
-		fd = 0;
-	else
-		fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		printf("file open error\n");
-		return 0;
-	}
-	
-
-	char *line[4];
-
-	int i = 0;
-	int gnl_result;
-	while ((gnl_result = get_next_line(fd, &line[i])) > 0)
-	{
-		//printf("gnl_result = %d\n", gnl_result);
-		printf("%s\n", line[i]);
-		i++;
-		//free(line);
-	}
-	//printf("gnl_result = %d\n", gnl_result);
-	printf("%s\n", line[i]);
-	//free(line);
-	system("leaks a.out > leaks_result");
-	return 0;
-}
- */

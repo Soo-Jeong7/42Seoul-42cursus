@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
-/*   Updated: 2020/03/11 00:13:35 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/11 02:08:36 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 4096
