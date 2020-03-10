@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
-/*   Updated: 2020/03/07 14:58:41 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/11 00:13:35 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 4096
+#endif
+
+
 int	get_next_line(int fd, char **line);
 
-void	*ft_memchr(void *addr, int c, size_t size);
-void	*ft_memcpy(void *dst, void *src, size_t n);
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(char *str, int c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
