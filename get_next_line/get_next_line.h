@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
-/*   Updated: 2020/03/11 02:08:36 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/11 18:31:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # define BUFFER_SIZE 4096
 #endif
 
+typedef struct	s_info
+{
+	char	buf[BUFFER_SIZE + 1];
+	char	*remainder[OPEN_MAX];
+}		t_info;
 
 int	get_next_line(int fd, char **line);
 
