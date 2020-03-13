@@ -12,5 +12,7 @@ int main(void)
 	printf("result = %d\n", result);
 	
 
+	system("leaks a.out > leaks_result && cat leaks_result | grep leaked");
+
 	return 0;
 }

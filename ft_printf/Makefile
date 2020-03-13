@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/03/13 01:22:17 by jko              ###   ########.fr        #
+#    Updated: 2020/03/13 17:20:36 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,11 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C ./libft fclean
-	$(RM) -r a.out a.out.dSYM
+	$(RM) -r a.out a.out.dSYM leaks_result
 
 re: clean all
 
 test: $(NAME)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_FLAGS) -g test_main.c
-	./a.out
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_FLAGS) -g test_main.c && ./a.out
 
 .PHONY: test bonus all clean fclean re
