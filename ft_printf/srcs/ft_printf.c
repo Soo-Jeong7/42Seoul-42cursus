@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/13 18:56:45 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/14 21:48:54 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 
 # define ERROR -1
+# define NULL_POINTER 0
 # define SPECIFIER_SET "cspdiuxXnfge%"
 
 typedef struct	s_data
@@ -38,23 +39,62 @@ typedef struct	s_format_tag
 	int	precision;
 }		t_format_tag;
 
-
-static t_format_tag parse_tag(const char *str)
+static char		*parse_flags(char *tag_str, t_format_tag *tag)
 {
 }
 
-static t_format_tag	*ft_printf_get_tag(const char *tag, t_data *data)
+static char		*parse_width(char *tag_str, t_format_tag *tag)
 {
-	size_t	len;
-	char	*spec_c;
+}
 
-	if (tag == 0)
-		return (0);
-	if (!(spec_c = ft_strchrset(tag + 1, SPECIFIER_SET)))
-		return (0);
-	len = spec_c - tag;
+static char		*parse_precision(char *tag_str, t_format_tag *tag)
+{
+}
+
+static char		*parse_length(char *tag_str, t_format_tag *tag)
+{
+}
+
+static char		*parse_specicier(char *tag_str, t_format_tag *tag)
+{
+}
+
+static t_format_tag	*parse_tag(char *tag_str)
+{
+	t_format_tag	*tag;
+
+	if (tag_str == 0 || !(tag = malloc(sizeof(t_format_tag))))
+		return (NULL_POINTER);
+	if (!(tag_str = parse_flags(tag_str, tag))
+			|| !(tag_str = parse_width(tag_str, tag))
+			|| !(tag_str = parse_precision(tag_str, tag))
+			|| !(tag_str = parse_length(tag_str, tag))
+			|| !(tag_str = parse_specicier(tag_str, tag)))
+	{
+		free(tag);
+		tag = 0;
+	}
+	return (tag);
+}
+
+static t_format_tag	*ft_printf_get_tag(const char *start, t_data *data)
+{
+	char		*end;
+	char		*tag_str;
+	t_format_tag	*tag;
+	size_t		len;
+
+	start += 1;
+	if (start == 0 || data == 0
+			|| !(end = ft_strchrset(start, SPECIFIER_SET)))
+		return (NULL_POINTER);
+	len = end - start - 1;
 	data->format += len + 1;
-	return (ft_strndup(tag, len));
+	if (!(tag_str = ft_strndup(start, len)))
+		return (NULL_POINTER);
+	tag = parse_tag(tag_str);
+	free(tag_str);
+	return (tag);
 }
 
 
@@ -98,14 +138,14 @@ static bool	ft_printf_print_text(t_data *data, size_t write_len)
 
 static int	ft_printf_print(t_data *data)
 {
-	char		*specifier;
+	char		*tag_start;
 	t_format_tag	*tag;
 	int		result;
 
-	while ((specifier = ft_strchr(data->format, '%')) != 0)
+	while ((tag_start = ft_strchr(data->format, '%')) != 0)
 	{
-		if (!ft_printf_print_text(data, specifier - data->format)
-				|| !(tag = ft_printf_get_tag(specifier, data)))
+		if (!ft_printf_print_text(data, tag_start - data->format)
+				|| !(tag = ft_printf_get_tag(tag_start, data)))
 			return (ERROR);
 		result = ft_printf_format(tag, data);
 		free(tag);
