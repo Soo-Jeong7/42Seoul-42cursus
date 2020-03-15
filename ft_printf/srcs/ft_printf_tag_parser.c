@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:31:54 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 19:21:47 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:47:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static char	*parse_specicier(char *tag_str, t_format_tag *tag)
 	char	*specifier_addr;
 	char	c;
 
-	if (!(specifier_addr = ft_strchr(TAG_SPECIFIER_SET, *tag_str)))
+	if (!tag_str || !tag
+			|| !(specifier_addr = ft_strchr(TAG_SPECIFIER_SET, *tag_str)))
 		return (NULL_POINTER);
 	c = TAG_SPECIFIER_SET[specifier_addr - TAG_SPECIFIER_SET];
 	tag->specifier = c;
@@ -47,7 +48,7 @@ static t_format_tag	*parse_tag(char *tag_str, t_data *data)
 {
 	t_format_tag	*tag;
 
-	if (tag_str == NULL_POINTER || !(tag = init_tag()))
+	if (!tag_str || !data || !(tag = init_tag()))
 		return (NULL_POINTER);
 	if (!(tag_str = ft_printf_parse_tag_option(tag_str, tag, data))
 			|| !(tag_str = parse_specicier(tag_str, tag)))

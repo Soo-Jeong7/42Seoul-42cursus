@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:19:10 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:37:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,11 @@ int		ft_printf(const char *, ...);
 char		*ft_printf_parse_tag_option(char *str, t_format_tag *tag, t_data *data);
 t_format_tag	*ft_printf_get_tag(const char *start, t_data *data);
 
+bool		apply_alignment(char **str, size_t *len, t_format_tag *tag);
+
+int		ft_printf_str(t_format_tag *tag, t_data *data);
+int		ft_printf_percent(t_format_tag *tag, t_data *data);
+int		ft_printf_char(t_format_tag *tag, t_data *data);
+int		ft_printf_pointer(t_format_tag *tag, t_data *data);
 
 #endif

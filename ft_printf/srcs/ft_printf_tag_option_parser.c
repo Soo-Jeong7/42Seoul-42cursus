@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:11:39 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 18:47:47 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:45:22 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*parse_flags(char *tag_str, t_format_tag *tag)
 	char	*flag_addr;
 	char	flag;
 
+	if (!tag_str || !tag)
+		return (NULL_POINTER);
 	while ((flag_addr = ft_strchr(TAG_FLAG_SET, *tag_str)))
 	{
 		flag = TAG_FLAG_SET[flag_addr - TAG_FLAG_SET];
@@ -42,6 +44,8 @@ static char	*parse_width(char *tag_str, t_format_tag *tag, t_data *data)
 	char	*c_addr;
 	int	n;
 
+	if (!tag_str || !tag || !data)
+		return (NULL_POINTER);
 	if (*tag_str == '*')
 	{
 		n = va_arg(data->ap, int);
@@ -69,6 +73,8 @@ static char	*parse_precision(char *tag_str, t_format_tag *tag, t_data *data)
 	char	*c_addr;
 	int	n;
 
+	if (!tag_str || !tag || !data)
+		return (NULL_POINTER);
 	if (*tag_str != '.')
 		return (tag_str);
 	tag_str++;
@@ -91,6 +97,8 @@ static char	*parse_precision(char *tag_str, t_format_tag *tag, t_data *data)
 
 static char	*parse_length(char *tag_str, t_format_tag *tag)
 {
+	if (!tag_str || !tag)
+		return (NULL_POINTER);
 	if (*tag_str == 'l')
 	{
 		tag->length = TAG_LENGTH_L;

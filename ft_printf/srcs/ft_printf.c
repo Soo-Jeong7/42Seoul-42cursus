@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:23:27 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:42:52 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,82 +39,6 @@ bool		apply_alignment(char **str, size_t *len, t_format_tag *tag)
 	return (true);
 }
 
-int		print_str(char **str, t_format_tag *tag, t_data *data)
-{
-	size_t	len;
-
-	len = ft_strlen(*str);
-	if (!apply_alignment(str, &len, tag))
-		return (ERROR);
-	data->written_len += len;
-	return (ft_putstr_fd(*str, 1));
-}
-
-static int	ft_printf_str(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	int	result;
-
-	if (!(str = ft_strdup(va_arg(data->ap, char *))))
-		return (ERROR);
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
-static int	ft_printf_percent(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	int	result;
-
-	if (!(str = malloc(2)))
-		return (ERROR);
-	str[0] = '%';
-	str[1] = NULL_CHAR;
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
-static int	ft_printf_char(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	int	result;
-
-	if (!(str = malloc(2)))
-		return (ERROR);
-	str[0] = va_arg(data->ap, int);
-	str[1] = NULL_CHAR;
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
-static int	ft_printf_pointer(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	size_t	addr;
-	int	result;
-	int	i;
-
-	addr = va_arg(data->ap, size_t);
-	if (!(str = malloc(12)))
-		return (ERROR);
-	str[0] = '0';
-	str[1] = 'x';
-	str[11] = NULL_CHAR;
-	i = 10;
-	while (i > 1)
-	{
-		str[i] = HEX_DIGIT_STR[addr % 16];
-		addr /= 16;
-		i--;
-	}
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
 static int	ft_printf_format(t_format_tag *tag, t_data *data)
 {
 	if (tag == 0 || data == 0)
@@ -134,6 +58,8 @@ static bool	ft_printf_print_text(t_data *data, size_t write_len)
 {
 	int len;
 
+	if (!data || write_len < 0)
+		return (false);
 	len = write(1, data->format, write_len);
 	if (len < 0)
 		return (false);
