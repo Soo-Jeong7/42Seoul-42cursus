@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/03/13 17:20:36 by jko              ###   ########.fr        #
+#    Updated: 2020/03/15 22:13:37 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@ AR = ar
 ARFLAGS = rcs
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I./includes -I./libft
 LIB_FLAGS = -L./libft -lft -L. -lftprintf
 
 RM = rm -f
 
-FILES = ft_printf
+FILES = ft_printf \
+	ft_printf_tag_parser \
+	ft_printf_tag_option_parser
 
 FILES_B = $(addsuffix _bonus, $(FILES))
 
@@ -64,6 +66,6 @@ fclean: clean
 re: clean all
 
 test: $(NAME)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_FLAGS) -g test_main.c && ./a.out
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_FLAGS) test_main.c && ./a.out
 
 .PHONY: test bonus all clean fclean re

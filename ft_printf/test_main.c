@@ -5,10 +5,10 @@
 
 int main(void)
 {
-	int result = ft_printf("ab = %s\n[123]\n", "ab");
+	int result = ft_printf("[%-5s]\n", "ab");
 	printf("result = %d\n", result);
 	
-	result = ft_printf("[%s][%s]", "ab", "123");
+	result = ft_printf("[%5s][%-5s]\n", "ab", "123");
 	printf("result = %d\n", result);
 	
 
