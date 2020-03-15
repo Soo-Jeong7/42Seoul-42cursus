@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 18:33:51 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:19:10 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define NULL_CHAR 0
 
 # define DIGIT_STR "0123456789"
+# define HEX_DIGIT_STR "0123456789abcdef"
 
 # define TAG_FLAG_SET "-+ #0"
 # define TAG_LENGTH_HH 1

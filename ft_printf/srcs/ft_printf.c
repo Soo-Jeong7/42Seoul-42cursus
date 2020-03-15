@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 22:30:08 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/15 23:23:27 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool		apply_alignment(char **str, size_t *len, t_format_tag *tag)
 	if (tag->left_align)
 	{
 		ft_strlcpy(temp, *str, *len + 1);
-		ft_memset(temp + *len, tag->fill_zero ? '0' : ' ', tag->width - *len);
+		ft_memset(temp + *len, ' ', tag->width - *len);
 		temp[tag->width] = NULL_CHAR;
 	}
 	else
@@ -62,6 +62,20 @@ static int	ft_printf_str(t_format_tag *tag, t_data *data)
 	return (result);
 }
 
+static int	ft_printf_percent(t_format_tag *tag, t_data *data)
+{
+	char	*str;
+	int	result;
+
+	if (!(str = malloc(2)))
+		return (ERROR);
+	str[0] = '%';
+	str[1] = NULL_CHAR;
+	result = print_str(&str, tag, data);
+	free(str);
+	return (result);
+}
+
 static int	ft_printf_char(t_format_tag *tag, t_data *data)
 {
 	char	*str;
@@ -76,6 +90,31 @@ static int	ft_printf_char(t_format_tag *tag, t_data *data)
 	return (result);
 }
 
+static int	ft_printf_pointer(t_format_tag *tag, t_data *data)
+{
+	char	*str;
+	size_t	addr;
+	int	result;
+	int	i;
+
+	addr = va_arg(data->ap, size_t);
+	if (!(str = malloc(12)))
+		return (ERROR);
+	str[0] = '0';
+	str[1] = 'x';
+	str[11] = NULL_CHAR;
+	i = 10;
+	while (i > 1)
+	{
+		str[i] = HEX_DIGIT_STR[addr % 16];
+		addr /= 16;
+		i--;
+	}
+	result = print_str(&str, tag, data);
+	free(str);
+	return (result);
+}
+
 static int	ft_printf_format(t_format_tag *tag, t_data *data)
 {
 	if (tag == 0 || data == 0)
@@ -84,6 +123,10 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 		return (ft_printf_char(tag, data));
 	else if (tag->specifier == 's')
 		return (ft_printf_str(tag, data));
+	else if (tag->specifier == 'p')
+		return (ft_printf_pointer(tag, data));
+	else if (tag->specifier == '%')
+		return (ft_printf_percent(tag, data));
 	return (ERROR);
 }
 

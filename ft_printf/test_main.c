@@ -11,7 +11,11 @@ int main(void)
 	result = ft_printf("[%5s][%-5s]\n", "ab", "123");
 	printf("result = %d\n", result);
 	
-
+	char *str = "123";
+	ft_printf("f = [%20p]\n", str);
+	   printf("r = [%20p]\n", str);
+	ft_printf("f = [%-20p]\n", str);
+	   printf("r = [%-20p]\n", str);
 	system("leaks a.out > leaks_result && cat leaks_result | grep leaked");
 
 	return 0;
