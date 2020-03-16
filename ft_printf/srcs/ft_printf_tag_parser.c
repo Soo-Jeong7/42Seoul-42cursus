@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:31:54 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:47:39 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 16:11:12 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_format_tag	*init_tag(void)
 	tag->length = false;
 	tag->specifier = NULL_CHAR;
 	tag->width = 0;
-	tag->precision = 0;
+	tag->precision = -1;
 	return (tag);
 }
 

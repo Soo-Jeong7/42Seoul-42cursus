@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:42:52 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 16:17:19 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool		apply_alignment(char **str, size_t *len, t_format_tag *tag)
 {
 	char	*temp;
 
-	if (str == NULL_POINTER || *str == NULL_POINTER || tag == NULL_POINTER)
+	if (!str || !*str || !tag)
 		return (false);
 	if (*len >= (size_t)tag->width)
 		return (true);
@@ -36,6 +36,29 @@ bool		apply_alignment(char **str, size_t *len, t_format_tag *tag)
 	free(*str);
 	*str = temp;
 	*len = tag->width;
+	return (true);
+}
+
+bool		apply_precision(char **str, size_t *len, t_format_tag *tag)
+{
+	char	*temp;
+
+	if (!str || !*str || !tag)
+		return (false);
+	if (tag->precision < 0)
+		return (true);
+	if (tag->specifier == 's')
+	{
+		if (*len > (size_t)tag->precision)
+		{
+			if (!(temp = ft_strndup(*str, tag->precision)))
+				return (false);
+			free(*str);
+			*str = temp;
+			*len = tag->precision;
+		}
+		return (true);
+	}
 	return (true);
 }
 

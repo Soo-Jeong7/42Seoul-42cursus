@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_print_function.c                         :+:      :+:    :+:   */
+/*   ft_printf_print_str.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:41:27 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 16:02:56 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ static int	print_str(char **str, t_format_tag *tag, t_data *data)
 {
 	size_t	len;
 
-	if (!str || !(*str) || !tag || !data)
+	if (!str || !tag || !data)
+		return (ERROR);
+	if (*str == NULL_POINTER && !(*str = ft_strdup("(null)")))
 		return (ERROR);
 	len = ft_strlen(*str);
-	if (!apply_alignment(str, &len, tag))
+	if (!apply_precision(str, &len, tag)
+			|| !apply_alignment(str, &len, tag))
 		return (ERROR);
 	data->written_len += len;
 	return (ft_putstr_fd(*str, 1));
@@ -30,36 +33,10 @@ int		ft_printf_str(t_format_tag *tag, t_data *data)
 	char	*str;
 	int	result;
 
-	if (!tag || !data || !(str = ft_strdup(va_arg(data->ap, char *))))
+	if (!tag || !data)
 		return (ERROR);
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
-int		ft_printf_percent(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	int	result;
-
-	if (!tag || !data || !(str = malloc(2)))
+	if ((str = va_arg(data->ap, char *)) && !(str = ft_strdup(str)))
 		return (ERROR);
-	str[0] = '%';
-	str[1] = NULL_CHAR;
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}
-
-int		ft_printf_char(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	int	result;
-
-	if (!tag || !data || !(str = malloc(2)))
-		return (ERROR);
-	str[0] = va_arg(data->ap, int);
-	str[1] = NULL_CHAR;
 	result = print_str(&str, tag, data);
 	free(str);
 	return (result);
@@ -71,16 +48,17 @@ int		ft_printf_pointer(t_format_tag *tag, t_data *data)
 	size_t	addr;
 	int	result;
 	int	i;
-
+	
 	if (!tag || !data)
 		return (ERROR);
 	addr = va_arg(data->ap, size_t);
-	if (!(str = malloc(12)))
+	i = !addr ? 4 : 12;
+	if (!(str = malloc(i)))
 		return (ERROR);
 	str[0] = '0';
 	str[1] = 'x';
-	str[11] = NULL_CHAR;
-	i = 10;
+	str[i - 1] = NULL_CHAR;
+	i -= 2;
 	while (i > 1)
 	{
 		str[i] = HEX_DIGIT_STR[addr % 16];

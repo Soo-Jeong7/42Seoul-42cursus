@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:11:39 by jko               #+#    #+#             */
-/*   Updated: 2020/03/15 23:45:22 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 16:14:21 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,11 @@ static char	*parse_precision(char *tag_str, t_format_tag *tag, t_data *data)
 	{
 		n = va_arg(data->ap, int);
 		if (n < 0)
-			n = 0;
+			n = -1;
 		tag->precision = n;
 		return (++tag_str);
 	}
+	tag->precision = 0;
 	while ((c_addr = ft_strchr(DIGIT_STR, *tag_str)))
 	{
 		n = DIGIT_STR[c_addr - DIGIT_STR] - '0';

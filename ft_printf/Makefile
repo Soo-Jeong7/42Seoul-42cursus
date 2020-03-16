@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/03/15 22:13:37 by jko              ###   ########.fr        #
+#    Updated: 2020/03/16 14:06:39 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ RM = rm -f
 
 FILES = ft_printf \
 	ft_printf_tag_parser \
-	ft_printf_tag_option_parser
+	ft_printf_tag_option_parser \
+	ft_printf_print_str \
+	ft_printf_print_char
 
 FILES_B = $(addsuffix _bonus, $(FILES))
 
