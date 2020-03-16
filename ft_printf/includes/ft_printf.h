@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 16:00:29 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 19:47:04 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # define NULL_CHAR 0
 
 # define DIGIT_STR "0123456789"
-# define HEX_DIGIT_STR "0123456789abcdef"
+# define HEX_STR "0123456789abcdef"
+# define HEX_STR_UPPER "0123456789ABCDEF"
 
 # define TAG_FLAG_SET "-+ #0"
 # define TAG_LENGTH_HH 1
@@ -59,10 +60,12 @@ t_format_tag	*ft_printf_get_tag(const char *start, t_data *data);
 
 bool		apply_alignment(char **str, size_t *len, t_format_tag *tag);
 bool		apply_precision(char **str, size_t *len, t_format_tag *tag);
+bool		apply_flag_sharp(char **s, size_t *len, t_format_tag *t, bool is_zero);
 
 int		ft_printf_str(t_format_tag *tag, t_data *data);
 int		ft_printf_percent(t_format_tag *tag, t_data *data);
 int		ft_printf_char(t_format_tag *tag, t_data *data);
 int		ft_printf_pointer(t_format_tag *tag, t_data *data);
+int		ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base);
 
 #endif

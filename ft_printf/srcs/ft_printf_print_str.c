@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 16:02:56 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 17:40:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		ft_printf_pointer(t_format_tag *tag, t_data *data)
 	i -= 2;
 	while (i > 1)
 	{
-		str[i] = HEX_DIGIT_STR[addr % 16];
+		str[i] = HEX_STR[addr % 16];
 		addr /= 16;
 		i--;
 	}
