@@ -1,57 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa.c                                             :+:      :+:    :+:   */
+/*   ulltoa_base.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 00:23:17 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 20:57:24 by jko              ###   ########.fr       */
+/*   Created: 2020/03/16 20:51:59 by jko               #+#    #+#             */
+/*   Updated: 2020/03/16 20:54:44 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_len(long long n)
+static size_t	get_unsigned_number_len(unsigned long long n, unsigned long long base_len)
 {
-	size_t		len;
+	size_t			len;
 
 	len = 0;
-	if (n < 0)
+	while (n >= base_len)
 	{
 		len++;
-		n *= -1;
-	}
-	while (n >= 10)
-	{
-		len++;
-		n /= 10;
+		n /= base_len;
 	}
 	return (++len);
 }
 
-char		*ft_itoa(int n)
+char		*ft_ulltoa_base(unsigned long long n, char *base)
 {
-	size_t		len;
-	size_t		i;
-	long long	n2;
-	char		*result;
+	size_t	len;
+	size_t	base_len;
+	size_t	i;
+	char	*result;
 
-	len = get_len(n);
+	if (base == 0)
+		base = "0123456789";
+	base_len = ft_strlen(base);
+	if (base_len < 2)
+		return (0);
+	len = get_unsigned_number_len(n, base_len);
 	if ((result = (char *)malloc(sizeof(char) * (len + 1))) == 0)
 		return (0);
 	result[len] = 0;
 	i = 0;
-	n2 = n < 0 ? (long long)n * -1 : (long long)n;
 	while (i < len)
 	{
-		if (i == len - 1 && n < 0)
-		{
-			result[0] = '-';
-			break ;
-		}
-		result[len - i - 1] = n2 % 10 + '0';
-		n2 /= 10;
+		result[len - i - 1] = base[n % base_len];
+		n /= base_len;
 		i++;
 	}
 	return (result);

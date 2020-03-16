@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:06:45 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 17:32:17 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 22:58:05 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
 # define INT_MAX_STR "2147483647"
 # define INT_MIN_STR "-2147483648"
+# define LLONG_MIN_STR "-9223372036854775808"
+
+# define DIGIT_STR "0123456789"
+# define HEX_STR "0123456789abcdef"
+# define HEX_STR_UPPER "0123456789ABCDEF"
+
+# define ERROR -1
+# define NULL_POINTER 0
+# define NULL_CHAR 0
 
 typedef struct	s_list
 {
@@ -62,6 +70,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
+char	*ft_lltoa_base(long long n, char *base);
 char	*ft_ulltoa_base(unsigned long long n, char *base);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 

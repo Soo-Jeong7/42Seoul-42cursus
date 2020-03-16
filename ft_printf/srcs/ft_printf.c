@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 19:54:36 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 21:39:13 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool		apply_precision(char **str, size_t *len, t_format_tag *tag)
 		return (true);
 	}
 	
-	if (ft_strchr("uxX", tag->specifier))
+	if (ft_strchr("diuxX", tag->specifier))
 	{
 		if (*len < (size_t)tag->precision)
 		{
@@ -131,7 +131,9 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 		return (ft_printf_unsigned_number(tag, data, HEX_STR));
 	else if (tag->specifier == 'X')
 		return (ft_printf_unsigned_number(tag, data, HEX_STR_UPPER));
-
+	else if (tag->specifier == 'd' || tag->specifier == 'i')
+		return (ft_printf_signed_number(tag, data));
+	
 	return (ERROR);
 }
 

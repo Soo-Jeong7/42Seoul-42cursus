@@ -6,20 +6,12 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 19:47:04 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/16 22:59:31 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-# define ERROR -1
-# define NULL_POINTER 0
-# define NULL_CHAR 0
-
-# define DIGIT_STR "0123456789"
-# define HEX_STR "0123456789abcdef"
-# define HEX_STR_UPPER "0123456789ABCDEF"
 
 # define TAG_FLAG_SET "-+ #0"
 # define TAG_LENGTH_HH 1
@@ -67,5 +59,6 @@ int		ft_printf_percent(t_format_tag *tag, t_data *data);
 int		ft_printf_char(t_format_tag *tag, t_data *data);
 int		ft_printf_pointer(t_format_tag *tag, t_data *data);
 int		ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base);
+int		ft_printf_signed_number(t_format_tag *tag, t_data *data);
 
 #endif

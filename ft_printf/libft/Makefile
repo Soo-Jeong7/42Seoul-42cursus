@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/03/13 01:10:43 by jko              ###   ########.fr        #
+#    Updated: 2020/03/16 20:56:11 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ FILES = memset \
 	strtrim \
 	split \
 	itoa \
+	lltoa_base \
+	ulltoa_base \
 	strmapi \
 	putchar_fd \
 	putstr_fd \
