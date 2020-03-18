@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:06:45 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 22:58:05 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/18 23:05:43 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdbool.h>
 
 # define INT_MAX_STR "2147483647"
 # define INT_MIN_STR "-2147483648"
@@ -72,6 +73,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_lltoa_base(long long n, char *base);
 char	*ft_ulltoa_base(unsigned long long n, char *base);
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 int	ft_putchar_fd(char c, int fd);

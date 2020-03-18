@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 22:59:31 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/18 14:07:55 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,22 @@ typedef struct	s_format_tag
 
 int		ft_printf(const char *, ...);
 
-char		*ft_printf_parse_tag_option(char *str, t_format_tag *tag, t_data *data);
+char		*ft_printf_parse_tag_option(
+		char *str, t_format_tag *tag, t_data *data);
 t_format_tag	*ft_printf_get_tag(const char *start, t_data *data);
 
 bool		apply_alignment(char **str, size_t *len, t_format_tag *tag);
 bool		apply_precision(char **str, size_t *len, t_format_tag *tag);
-bool		apply_flag_sharp(char **s, size_t *len, t_format_tag *t, bool is_zero);
+bool		apply_flag_sharp(
+		char **s, size_t *len, t_format_tag *t, bool is_zero);
 
 int		ft_printf_str(t_format_tag *tag, t_data *data);
 int		ft_printf_percent(t_format_tag *tag, t_data *data);
 int		ft_printf_char(t_format_tag *tag, t_data *data);
 int		ft_printf_pointer(t_format_tag *tag, t_data *data);
-int		ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base);
+int		ft_printf_unsigned_number(
+		t_format_tag *tag, t_data *data, char *base);
 int		ft_printf_signed_number(t_format_tag *tag, t_data *data);
+int		ft_printf_scientific_notation(t_format_tag *tag, t_data *data);
 
 #endif

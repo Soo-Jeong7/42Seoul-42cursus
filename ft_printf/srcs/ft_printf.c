@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 21:39:13 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/18 23:26:53 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ bool		apply_alignment(char **str, size_t *len, t_format_tag *tag)
 	}
 	else
 	{
-		check = tag->fill_zero && tag->precision < 0;
+		check = tag->fill_zero &&
+			(tag->precision < 0 || ft_strchr("eE", tag->specifier));
 		ft_memset(temp, check ? '0' : ' ', tag->width - *len);
 		ft_strlcpy(temp + tag->width - *len, *str, *len + 1);
 	}
@@ -119,12 +120,12 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 		return (ERROR);
 	if (tag->specifier == 'c')
 		return (ft_printf_char(tag, data));
+	else if (tag->specifier == '%')
+		return (ft_printf_percent(tag, data));
 	else if (tag->specifier == 's')
 		return (ft_printf_str(tag, data));
 	else if (tag->specifier == 'p')
 		return (ft_printf_pointer(tag, data));
-	else if (tag->specifier == '%')
-		return (ft_printf_percent(tag, data));
 	else if (tag->specifier == 'u')
 		return (ft_printf_unsigned_number(tag, data, DIGIT_STR));
 	else if (tag->specifier == 'x')
@@ -133,7 +134,8 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 		return (ft_printf_unsigned_number(tag, data, HEX_STR_UPPER));
 	else if (tag->specifier == 'd' || tag->specifier == 'i')
 		return (ft_printf_signed_number(tag, data));
-	
+	else if (tag->specifier == 'e' || tag->specifier == 'E')
+		return (ft_printf_scientific_notation(tag, data));
 	return (ERROR);
 }
 
