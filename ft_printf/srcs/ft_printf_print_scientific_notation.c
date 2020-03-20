@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/20 20:25:45 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/20 20:34:24 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,10 @@ int		ft_printf_scientific_notation(
 		return (ERROR);
 	}
 	result = print_e_num(sn, tag, data);
+	free(d);
+	free(sn->exponent);
+	free(sn->head);
+	free(sn->tail);
 	free(sn);
 	return (result);
 }
