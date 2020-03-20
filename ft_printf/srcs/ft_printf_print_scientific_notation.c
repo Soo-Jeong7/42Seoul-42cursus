@@ -6,19 +6,18 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/18 23:19:04 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/20 20:25:45 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 typedef struct	s_double_value
 {
 	double	n;
 	double	mantissa;
 	long long	head;
-	long long	tail;
+	char	*tail;
 	int	exponent;
 	bool	is_negative;
 	bool	exponent_is_negative;
@@ -62,24 +61,25 @@ static bool	get_exponent_and_mantissa(double n, t_double_value *d)
 
 static bool	get_head_tail(t_double_value *d)
 {
-	long long	tail;
+	char		tail[256];
 	long long	temp;
 	double		t;
+	size_t		i;
 
 	d->head = (int)d->mantissa;
-	tail = 0;
-	temp = 0;
+	ft_bzero(tail, 256);
 	t = (d->mantissa - d->head) * 10;
-	while (t > temp)
+	temp = (long long)t;
+	i = 0;
+	while (t > 0)
 	{
-		temp = (long long)t;
-		tail = tail * 10 + temp;
+		tail[i++] = temp + '0';
 		t = (t - temp) * 10;
+		temp = (long long)t;
 	}
-	d->tail = tail;
+	d->tail = ft_strdup(tail);
 	return (true);
 }
-
 
 static t_scientific_notation	*get_e_str(t_double_value *d)
 {
@@ -90,6 +90,7 @@ static t_scientific_notation	*get_e_str(t_double_value *d)
 		return (0);
 	sn->is_negative = d->is_negative;
 	sn->exponent = ft_itoa(d->exponent);
+	sn->exponent_is_negative = d->exponent_is_negative;
 	if (d->exponent < 10)
 	{
 		if (!(temp = malloc(ft_strlen(sn->exponent + 2))))
@@ -103,7 +104,7 @@ static t_scientific_notation	*get_e_str(t_double_value *d)
 		sn->exponent = temp;
 	}
 	sn->head = ft_itoa(d->head);
-	sn->tail = ft_itoa(d->tail);
+	sn->tail = d->tail;
 	if (!sn->head || !sn->tail || !sn->exponent)
 	{
 		free(sn->head);
@@ -121,6 +122,7 @@ static t_double_value *get_double_value(double n)
 
 	if (!(d = malloc(sizeof(t_double_value))))
 		return (0);
+	d->is_negative = false;
 	if (n < 0)
 	{
 		d->is_negative = true;
@@ -203,20 +205,21 @@ static bool	apply_precision_double(t_scientific_notation *sn, t_format_tag *tag)
 	if (!sn || !tag)
 		return (false);
 	len = ft_strlen(sn->tail);
-	if ((tag->precision < 0 && len >= 6) || len >= (size_t)tag->precision)
+	if ((tag->precision < 0 && len == 6) ||
+			(tag->precision >= 0 && len == (size_t)tag->precision))
 		return (true);
 	new_len = tag->precision < 0 ? 7 : (tag->precision + 1);
 	if (!(temp = malloc(new_len)))
 		return (false);
 	ft_strlcpy(temp, sn->tail, new_len);
-	ft_memset(temp + len, '0', new_len - len - 1);
-	temp[new_len] = NULL_CHAR;
+	if (tag->precision >= 0 && len < (size_t)tag->precision)
+		ft_memset(temp + len, '0', new_len - len - 1);
+	temp[new_len - 1] = NULL_CHAR;
 	free(sn->tail);
 	sn->tail = temp;
 	return (true);
 }
 
-#include <stdio.h>
 static int	print_e_num(t_scientific_notation *sn, t_format_tag *tag, t_data *data)
 {
 	char	*str;

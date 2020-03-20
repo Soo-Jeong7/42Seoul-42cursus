@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/18 14:07:55 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/20 16:52:24 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include <wchar.h>
 
 typedef struct	s_data
 {
@@ -64,5 +65,6 @@ int		ft_printf_unsigned_number(
 		t_format_tag *tag, t_data *data, char *base);
 int		ft_printf_signed_number(t_format_tag *tag, t_data *data);
 int		ft_printf_scientific_notation(t_format_tag *tag, t_data *data);
+int		ft_printf_count(t_format_tag *tag, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 13:43:43 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 14:55:53 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/20 20:21:16 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ft_printf_percent(t_format_tag *tag, t_data *data)
 
 int		ft_printf_char(t_format_tag *tag, t_data *data)
 {
-	char	c;
+	int	c;
 	int	result;
 
 	if (!tag || !data)

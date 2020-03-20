@@ -83,22 +83,34 @@ int main(void)
 	result_f = ft_printf("f = [%0+10d]\n", -123);
 	result_r =    printf("r = [%0+10d]\n", -123);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
-
-
 	result_f = ft_printf("f = [%e]\n", -123.456);
 	result_r =    printf("r = [%e]\n", -123.456);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
-
 	result_f = ft_printf("f = [%e]\n", 123.456);
 	result_r =    printf("r = [%e]\n", 123.456);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
-
 	result_f = ft_printf("f = [% 30.15e]\n", 123.456);
 	result_r =    printf("r = [% 30.15e]\n", 123.456);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
-
 	result_f = ft_printf("f = [%030.15e]\n", 123.456);
 	result_r =    printf("r = [%030.15e]\n", 123.456);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+
+
+	result_f = ft_printf("f = [%e]\n", -123.45678901234);
+	result_r =    printf("r = [%e]\n", -123.45678901234);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+
+	result_f = ft_printf("f = [%e]\n", 123.45678901234);
+	result_r =    printf("r = [%e]\n", 123.45678901234);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+
+	result_f = ft_printf("f = [% 30.15e]\n", 123.45678901234);
+	result_r =    printf("r = [% 30.15e]\n", 123.45678901234);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+
+	result_f = ft_printf("f = [%030.15e]\n", 123.45678901234);
+	result_r =    printf("r = [%030.15e]\n", 123.45678901234);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
 
 
@@ -108,10 +120,17 @@ int main(void)
 	setbuf(stdout, NULL);
 	setlocale(LC_ALL, "en_US.UTF-8");
 	wchar_t msg[] = L"안녕하세요.";
+	printf("%d\n", printf("%lc", msg[0]));
 	printf("%d\n", printf("%lc\n", msg[0]));
-	printf("%d\n", printf("%ls 끝.\n", msg));
-	ft_printf("%d\n", ft_printf("%lc\n", msg[0]));
-	ft_printf("%d\n", ft_printf("%ls 끝.\n", msg));
+	printf("%d\n", printf("%ls\n", msg));
+	printf("%d\n", printf("%ls", msg));
+//	ft_printf("%d\n", ft_printf("%lc\n", msg[0]));
+//	ft_printf("%d\n", ft_printf("%ls 끝.\n", msg));
+//
+	result_r =    printf("r = [%ls]\n", L"안녕하세요.");
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+	result_f = ft_printf("f = [%ls]\n", L"안녕하세요.");
+
 
 
 	system("leaks a.out > leaks_result && cat leaks_result | grep leaked");

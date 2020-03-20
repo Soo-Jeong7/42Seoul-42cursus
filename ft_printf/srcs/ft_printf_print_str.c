@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 17:40:00 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/20 20:25:37 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_printf_str(t_format_tag *tag, t_data *data)
 
 	if (!tag || !data)
 		return (ERROR);
-	if ((str = va_arg(data->ap, char *)) && !(str = ft_strdup(str)))
+		if ((str = va_arg(data->ap, char *)) && !(str = ft_strdup(str)))
 		return (ERROR);
 	result = print_str(&str, tag, data);
 	free(str);

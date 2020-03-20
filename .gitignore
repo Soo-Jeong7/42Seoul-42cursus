@@ -2,6 +2,7 @@
 
 .ccls
 
+leaks_result
 
 *.DS_Store
 
