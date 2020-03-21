@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/20 20:25:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/21 22:09:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,43 @@ static int	print_str(char **str, t_format_tag *tag, t_data *data)
 	return (ft_putstr_fd(*str, 1));
 }
 
-int		ft_printf_str(t_format_tag *tag, t_data *data)
+int		ft_printf_wchar(wint_t c, t_format_tag *tag, t_data *data)
 {
 	char	*str;
+	wchar_t	wstr[2];
 	int	result;
 
 	if (!tag || !data)
 		return (ERROR);
-		if ((str = va_arg(data->ap, char *)) && !(str = ft_strdup(str)))
+	wstr[0] = c;
+	wstr[1] = L'\0';
+	str = ft_wchars_to_str(wstr);
+	if (!str)
+		return (ERROR);
+	result = print_str(&str, tag, data);
+	free(str);
+	return (result);
+}
+
+int		ft_printf_str(t_format_tag *tag, t_data *data)
+{
+	char	*str;
+	wchar_t	*wstr;
+	int	result;
+
+	if (!tag || !data)
+		return (ERROR);
+	if (tag->length == TAG_LENGTH_L)
+	{
+		wstr = va_arg(data->ap, wchar_t *);
+		str = ft_wchars_to_str(wstr);
+	}
+	else
+	{
+		str = va_arg(data->ap, char *);
+		str = ft_strdup(str);
+	}
+	if (!str)
 		return (ERROR);
 	result = print_str(&str, tag, data);
 	free(str);

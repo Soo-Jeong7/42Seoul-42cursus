@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 13:43:43 by jko               #+#    #+#             */
-/*   Updated: 2020/03/20 20:21:16 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/21 22:19:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,19 @@ int		ft_printf_percent(t_format_tag *tag, t_data *data)
 int		ft_printf_char(t_format_tag *tag, t_data *data)
 {
 	int	c;
+	wint_t	wc;
 	int	result;
 
 	if (!tag || !data)
 		return (ERROR);
-	c = va_arg(data->ap, int);
+	if (tag->length == TAG_LENGTH_L)
+	{
+		if ((wc = va_arg(data->ap, wint_t)) != L'\0')
+			return (ft_printf_wchar(wc, tag, data));
+		c = wc;
+	}
+	else
+		c = va_arg(data->ap, int);
 	result = print_char(c, tag, data);
 	return (result);
 }

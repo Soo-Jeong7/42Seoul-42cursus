@@ -117,19 +117,29 @@ int main(void)
 
 
 
-	setbuf(stdout, NULL);
-	setlocale(LC_ALL, "en_US.UTF-8");
+	setlocale(LC_ALL, "");
 	wchar_t msg[] = L"안녕하세요.";
-	printf("%d\n", printf("%lc", msg[0]));
 	printf("%d\n", printf("%lc\n", msg[0]));
 	printf("%d\n", printf("%ls\n", msg));
-	printf("%d\n", printf("%ls", msg));
-//	ft_printf("%d\n", ft_printf("%lc\n", msg[0]));
-//	ft_printf("%d\n", ft_printf("%ls 끝.\n", msg));
-//
-	result_r =    printf("r = [%ls]\n", L"안녕하세요.");
+	ft_printf("%d\n", ft_printf("%lc\n", msg[0]));
+	ft_printf("%d\n", ft_printf("%ls\n", msg));
+
+	result_r =    printf("r = [%10lc]\n", L'\0');
+	result_f = ft_printf("f = [%10lc]\n", L'\0');
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+	
+	result_r =    printf("r = [%10lc]\n", L"안녕하세요."[1]);
+	result_f = ft_printf("f = [%10lc]\n", L"안녕하세요."[1]);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+	result_r =    printf("r = [%-30lc]\n", L"안녕하세요."[1]);
+	result_f = ft_printf("f = [%-30lc]\n", L"안녕하세요."[1]);
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+	result_r =    printf("r = [%ls]\n", L"안녕하세요.");
 	result_f = ft_printf("f = [%ls]\n", L"안녕하세요.");
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
+	result_r =    printf("r = [%-30ls]\n", L"안녕하세요.");
+	result_f = ft_printf("f = [%-30ls]\n", L"안녕하세요.");
+	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
 
 
 

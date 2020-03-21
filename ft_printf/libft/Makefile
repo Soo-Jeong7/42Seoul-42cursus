@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/03/18 23:05:49 by jko              ###   ########.fr        #
+#    Updated: 2020/03/21 21:34:36 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,12 @@ FILES = memset \
 	ulltoa_base \
 	strmapi \
 	putchar_fd \
+	putwchar_fd \
 	putstr_fd \
+	putwstr_fd \
 	putendl_fd \
-	putnbr_fd
+	putnbr_fd \
+	wchars_to_str
 
 FILES_B = lstnew \
 	  lstadd_front \

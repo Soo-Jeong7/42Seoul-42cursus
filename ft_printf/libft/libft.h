@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:06:45 by jko               #+#    #+#             */
-/*   Updated: 2020/03/18 23:05:43 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/21 21:33:47 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <wchar.h>
 
 # define INT_MAX_STR "2147483647"
 # define INT_MIN_STR "-2147483648"
@@ -45,6 +46,8 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 
 size_t	ft_strlen(const char *s);
+size_t	ft_wchar_utf8_len(wint_t c);
+size_t	ft_wstr_utf8_len(const wchar_t *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
@@ -54,6 +57,7 @@ char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int	ft_atoi(const char *str);
+char	*ft_wchars_to_str(const wchar_t *ws);
 
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
@@ -77,7 +81,9 @@ char	*ft_ulltoa_base(unsigned long long n, char *base);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 int	ft_putchar_fd(char c, int fd);
+int	ft_putwchar_fd(wint_t c, int fd);
 int	ft_putstr_fd(char *s, int fd);
+int	ft_putwstr_fd(wchar_t *s, int fd);
 int	ft_putendl_fd(char *s, int fd);
 int	ft_putnbr_fd(int n, int fd);
 

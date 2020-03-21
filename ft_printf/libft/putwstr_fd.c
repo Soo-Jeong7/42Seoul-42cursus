@@ -1,52 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   putwstr_fd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 13:45:13 by jko               #+#    #+#             */
-/*   Updated: 2020/03/21 21:55:37 by jko              ###   ########.fr       */
+/*   Created: 2020/02/29 16:19:50 by jko               #+#    #+#             */
+/*   Updated: 2020/03/21 21:11:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_putwstr_fd(wchar_t *s, int fd)
 {
-	size_t	len;
+	int	len;
+	int	i;
+	int	temp;
 
-	if (s == 0)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-size_t	ft_wchar_utf8_len(wint_t c)
-{
-	if (c < 128)
-		return (1);
-	if (c < 2048)
-		return (2);
-	if (c < 65536)
-		return (3);
-	if (c < 2097152)
-		return (4);
-	return (0);
-}
-
-size_t	ft_wstr_utf8_len(const wchar_t *s)
-{
-	size_t	len;
-	size_t	i;
-
+	if (s == 0 || fd < 0)
+		return (ERROR);
 	len = 0;
 	i = 0;
-	while (s[i] != L'\0')
+	while (s[i])
 	{
-		len += ft_wchar_utf8_len(s[i]);
+		if ((temp = ft_putwchar_fd(s[i], fd)) < 0)
+			return (ERROR);
+		len += temp;
 		i++;
 	}
 	return (len);
