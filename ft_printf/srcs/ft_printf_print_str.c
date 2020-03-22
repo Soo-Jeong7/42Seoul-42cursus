@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/21 22:09:39 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/22 17:51:16 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ int		ft_printf_str(t_format_tag *tag, t_data *data)
 	}
 	else
 	{
-		str = va_arg(data->ap, char *);
-		str = ft_strdup(str);
+		if ((str = va_arg(data->ap, char *)))
+			str = ft_strdup(str);
 	}
-	if (!str)
-		return (ERROR);
 	result = print_str(&str, tag, data);
 	free(str);
 	return (result);

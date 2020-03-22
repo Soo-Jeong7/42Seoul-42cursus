@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/03/21 21:54:17 by jko              ###   ########.fr        #
+#    Updated: 2020/03/22 17:46:13 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ FILES = ft_printf \
 	ft_printf_print_unsigned_num \
 	ft_printf_print_signed_num \
 	ft_printf_print_scientific_notation \
-	ft_printf_count
+	ft_printf_count \
+	ft_printf_flags
 
 FILES_B = $(addsuffix _bonus, $(FILES))
 
