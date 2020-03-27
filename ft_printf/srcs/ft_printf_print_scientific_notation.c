@@ -6,31 +6,11 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/20 20:34:24 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/27 19:03:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-typedef struct	s_double_value
-{
-	double	n;
-	double	mantissa;
-	long long	head;
-	char	*tail;
-	int	exponent;
-	bool	is_negative;
-	bool	exponent_is_negative;
-}		t_double_value;
-
-typedef struct	s_scientific_notation
-{
-	char	*head;
-	char	*tail;
-	char	*exponent;
-	bool	is_negative;
-	bool	exponent_is_negative;
-}		t_scientific_notation;
 
 static bool	get_exponent_and_mantissa(double n, t_double_value *d)
 {
@@ -138,13 +118,18 @@ static t_double_value *get_double_value(double n)
 	return (d);
 }
 
-static char	*get_str(t_scientific_notation *sn, size_t *len, t_format_tag *tag, bool is_upper)
+static char	*get_str(
+		t_scientific_notation *sn,
+		size_t *len,
+		t_format_tag *tag,
+		bool is_upper)
 {
 	char	*result;
 
 	if (!sn || !tag)
 		return (false);
-	*len = ft_strlen(sn->head) + ft_strlen(sn->tail) + ft_strlen(sn->exponent) + 4;
+	*len = ft_strlen(sn->head) + ft_strlen(sn->tail)
+		+ ft_strlen(sn->exponent) + 4;
 	if (!(result = malloc(*len)))
 		return (false);
 	ft_strlcpy(result, sn->head, *len);
@@ -196,7 +181,9 @@ static int	move_sign(char *str, t_format_tag *tag, bool is_negative)
 }
 
 
-static bool	apply_precision_double(t_scientific_notation *sn, t_format_tag *tag)
+static bool	apply_precision_double(
+		t_scientific_notation *sn,
+		t_format_tag *tag)
 {
 	char	*temp;
 	size_t	len;
@@ -220,7 +207,10 @@ static bool	apply_precision_double(t_scientific_notation *sn, t_format_tag *tag)
 	return (true);
 }
 
-static int	print_e_num(t_scientific_notation *sn, t_format_tag *tag, t_data *data)
+static int	print_e_num(
+		t_scientific_notation *sn,
+		t_format_tag *tag,
+		t_data *data)
 {
 	char	*str;
 	size_t	len;

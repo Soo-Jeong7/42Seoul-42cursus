@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/03/21 22:09:23 by jko              ###   ########.fr       */
+/*   Updated: 2020/03/27 19:00:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ typedef struct	s_format_tag
 	int	width;
 	int	precision;
 }		t_format_tag;
+
+typedef struct	s_double_value
+{
+	double		n;
+	double		mantissa;
+	long long	head;
+	char		*tail;
+	int		exponent;
+	bool		is_negative;
+	bool		exponent_is_negative;
+}		t_double_value;
+
+typedef struct	s_scientific_notation
+{
+	char	*head;
+	char	*tail;
+	char	*exponent;
+	bool	is_negative;
+	bool	exponent_is_negative;
+}		t_scientific_notation;
 
 int		ft_printf(const char *, ...);
 
