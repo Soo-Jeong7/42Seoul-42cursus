@@ -17,4 +17,8 @@ RUN tar -xvf /root/phpMyAdmin.tar.gz &&\
 
 COPY ./srcs/nginx-conf /etc/nginx/sites-available/default
 
+COPY ./srcs/wordpress.tar.gz /root
+
+RUN tar -xvf /root/wordpress.tar.gz
+
 # ENTRYPOINT ["", ""]
