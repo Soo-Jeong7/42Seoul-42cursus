@@ -19,6 +19,8 @@ COPY ./srcs/nginx-conf /etc/nginx/sites-available/default
 
 COPY ./srcs/wordpress.tar.gz /root
 
-RUN tar -xvf /root/wordpress.tar.gz
+RUN tar -xvf /root/wordpress.tar.gz &&\
+	mkdir /var/www/html/wordpress &&\
+	mv wordpress*/* /var/www/html/wordpress/
 
 # ENTRYPOINT ["", ""]
