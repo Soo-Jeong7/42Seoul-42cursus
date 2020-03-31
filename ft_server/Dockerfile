@@ -11,14 +11,15 @@ RUN apt-get update &&\
 COPY ./srcs/db.sql /root
 
 RUN service mysql start &&\
-	mysql -u root -p < /root/db.sql
+	mysql -u root -p < /root/db.sql &&\
+	rm /root/db.sql
 
 COPY ./srcs/phpMyAdmin.tar.gz /root
 
 RUN tar -xvf /root/phpMyAdmin.tar.gz &&\
 	mkdir /var/www/html/phpmyadmin &&\
 	mv phpMyAdmin*/* /var/www/html/phpmyadmin/ &&\
-	rm -rf phpMyAdmin* /root/phpMyAdmin
+	rm /root/phpMyAdmin.tar.gz
 
 COPY ./srcs/nginx-conf /etc/nginx/sites-available/default
 
@@ -26,7 +27,8 @@ COPY ./srcs/wordpress.tar.gz /root
 
 RUN tar -xvf /root/wordpress.tar.gz &&\
 	mkdir /var/www/html/wordpress &&\
-	mv wordpress*/* /var/www/html/wordpress/
+	mv wordpress*/* /var/www/html/wordpress/ &&\
+	rm /root/wordpress.tar.gz
 
 COPY ./srcs/wp-config.php /var/www/html/wordpress/
 
