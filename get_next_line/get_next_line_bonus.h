@@ -6,12 +6,12 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:07:01 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:08:15 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>

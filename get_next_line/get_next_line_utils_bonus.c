@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:56:40 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:05:50 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:09:14 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(char *str, int c)
 {
-	size_t 			i;
+	size_t			i;
 	unsigned char	c2;
 
 	if (str == 0)
@@ -59,4 +59,3 @@ size_t	ft_strlen(const char *s)
 		len++;
 	return (len);
 }
-
