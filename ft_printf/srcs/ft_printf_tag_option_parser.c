@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:11:39 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 16:14:21 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:19:54 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*parse_flags(char *tag_str, t_format_tag *tag)
 static char	*parse_width(char *tag_str, t_format_tag *tag, t_data *data)
 {
 	char	*c_addr;
-	int	n;
+	int		n;
 
 	if (!tag_str || !tag || !data)
 		return (NULL_POINTER);
@@ -71,7 +71,7 @@ static char	*parse_width(char *tag_str, t_format_tag *tag, t_data *data)
 static char	*parse_precision(char *tag_str, t_format_tag *tag, t_data *data)
 {
 	char	*c_addr;
-	int	n;
+	int		n;
 
 	if (!tag_str || !tag || !data)
 		return (NULL_POINTER);
@@ -123,7 +123,8 @@ static char	*parse_length(char *tag_str, t_format_tag *tag)
 	return (tag_str);
 }
 
-char		*ft_printf_parse_tag_option(char *str, t_format_tag *tag, t_data *data)
+char		*ft_printf_parse_tag_option(
+				char *str, t_format_tag *tag, t_data *data)
 {
 	if (str == NULL_POINTER
 			|| tag == NULL_POINTER

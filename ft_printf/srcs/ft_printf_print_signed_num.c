@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 23:59:21 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:19:06 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	add_minus_sign(char **str, size_t *len)
 static bool	add_sign(char **str, size_t *len, t_format_tag *tag)
 {
 	char	*temp;
-	int	res;
+	int		res;
 
 	if (!str || !*str || !tag)
 		return (false);
@@ -92,18 +92,18 @@ static int	print_signed_num(
 	if (!apply_precision(str, &len, tag)
 			|| !add_sign(str, &len, tag)
 			|| !apply_alignment(str, &len, tag)
-			|| (tag->precision < 0 && 
+			|| (tag->precision < 0 &&
 				!move_sign(*str, tag, is_negative)))
 		return (ERROR);
 	data->written_len += len;
 	return (ft_putstr_fd(*str, 1));
 }
 
-int		ft_printf_signed_number(t_format_tag *tag, t_data *data)
+int			ft_printf_signed_number(t_format_tag *tag, t_data *data)
 {
 	char		*str;
 	long long	arg;
-	int		result;
+	int			result;
 
 	if (!tag || !data)
 		return (ERROR);

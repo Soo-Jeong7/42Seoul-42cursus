@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 20:32:59 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:16:19 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static int	print_unsigned_num(
 	return (ft_putstr_fd(*str, 1));
 }
 
-int		ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base)
+int			ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base)
 {
-	char			*str;
+	char				*str;
 	unsigned long long	arg;
-	int			result;
+	int					result;
 
 	if (!tag || !data)
 		return (ERROR);

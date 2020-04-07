@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/03/27 19:03:00 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:24:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static bool	get_head_tail(t_double_value *d)
 static t_scientific_notation	*get_e_str(t_double_value *d)
 {
 	t_scientific_notation	*sn;
-	char			*temp;
+	char					*temp;
 
 	if (!d || !(sn = malloc(sizeof(t_scientific_notation))))
 		return (0);
@@ -96,7 +96,7 @@ static t_scientific_notation	*get_e_str(t_double_value *d)
 	return (sn);
 }
 
-static t_double_value *get_double_value(double n)
+static t_double_value			*get_double_value(double n)
 {
 	t_double_value *d;
 
@@ -179,7 +179,6 @@ static int	move_sign(char *str, t_format_tag *tag, bool is_negative)
 	str[0] = c;
 	return (true);
 }
-
 
 static bool	apply_precision_double(
 		t_scientific_notation *sn,

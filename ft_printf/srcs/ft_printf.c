@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/03/23 21:09:56 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:15:06 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static bool	ft_printf_print_text(t_data *data, size_t write_len)
 
 static int	ft_printf_print(t_data *data)
 {
-	char		*tag_start;
+	char			*tag_start;
 	t_format_tag	*tag;
-	int		result;
+	int				result;
 
 	while ((tag_start = ft_strchr(data->format, '%')) != 0)
 	{
@@ -74,10 +74,10 @@ static int	ft_printf_print(t_data *data)
 	return (data->written_len);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	t_data	data;
-	
+
 	if (format == 0)
 		return (ERROR);
 	va_start(data.ap, format);

@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 13:43:43 by jko               #+#    #+#             */
-/*   Updated: 2020/03/21 22:19:07 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:15:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	print_char(char c, t_format_tag *tag, t_data *data)
 {
 	size_t	len;
 	char	*str;
-	int	result1;
-	int	result2;
+	int		result1;
+	int		result2;
 
 	if (!tag || !data)
 		return (ERROR);
@@ -73,9 +73,9 @@ int		ft_printf_percent(t_format_tag *tag, t_data *data)
 
 int		ft_printf_char(t_format_tag *tag, t_data *data)
 {
-	int	c;
+	int		c;
 	wint_t	wc;
-	int	result;
+	int		result;
 
 	if (!tag || !data)
 		return (ERROR);

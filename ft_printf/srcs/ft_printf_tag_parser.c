@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 18:31:54 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 16:11:12 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:18:05 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_format_tag	*init_tag(void)
 	return (tag);
 }
 
-static char	*parse_specicier(char *tag_str, t_format_tag *tag)
+static char			*parse_specicier(char *tag_str, t_format_tag *tag)
 {
 	char	*specifier_addr;
 	char	c;
@@ -59,12 +59,12 @@ static t_format_tag	*parse_tag(char *tag_str, t_data *data)
 	return (tag);
 }
 
-t_format_tag	*ft_printf_get_tag(const char *start, t_data *data)
+t_format_tag		*ft_printf_get_tag(const char *start, t_data *data)
 {
-	char		*end;
-	char		*tag_str;
+	char			*end;
+	char			*tag_str;
 	t_format_tag	*tag;
-	size_t		len;
+	size_t			len;
 
 	start += 1;
 	if (start == 0 || data == 0

@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 23:34:23 by jko               #+#    #+#             */
-/*   Updated: 2020/03/22 17:51:16 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:17:16 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	print_str(char **str, t_format_tag *tag, t_data *data)
 	return (ft_putstr_fd(*str, 1));
 }
 
-int		ft_printf_wchar(wint_t c, t_format_tag *tag, t_data *data)
+int			ft_printf_wchar(wint_t c, t_format_tag *tag, t_data *data)
 {
 	char	*str;
 	wchar_t	wstr[2];
-	int	result;
+	int		result;
 
 	if (!tag || !data)
 		return (ERROR);
@@ -46,11 +46,11 @@ int		ft_printf_wchar(wint_t c, t_format_tag *tag, t_data *data)
 	return (result);
 }
 
-int		ft_printf_str(t_format_tag *tag, t_data *data)
+int			ft_printf_str(t_format_tag *tag, t_data *data)
 {
 	char	*str;
 	wchar_t	*wstr;
-	int	result;
+	int		result;
 
 	if (!tag || !data)
 		return (ERROR);
@@ -69,13 +69,13 @@ int		ft_printf_str(t_format_tag *tag, t_data *data)
 	return (result);
 }
 
-int		ft_printf_pointer(t_format_tag *tag, t_data *data)
+int			ft_printf_pointer(t_format_tag *tag, t_data *data)
 {
 	char	*str;
 	size_t	addr;
-	int	result;
-	int	i;
-	
+	int		result;
+	int		i;
+
 	if (!tag || !data)
 		return (ERROR);
 	addr = va_arg(data->ap, size_t);
