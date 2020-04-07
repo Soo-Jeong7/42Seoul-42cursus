@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:29:51 by jko               #+#    #+#             */
-/*   Updated: 2020/02/28 22:54:07 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:26:01 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	get_front_index(const char *s1, const char *set, size_t len)
 	return (i);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	front;
 	size_t	back;

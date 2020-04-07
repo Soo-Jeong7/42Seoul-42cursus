@@ -6,12 +6,11 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/03/11 18:33:05 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:03:03 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 static int	join(char **remainder, char buf[BUFFER_SIZE + 1], int read_size)
 {
@@ -25,7 +24,7 @@ static int	join(char **remainder, char buf[BUFFER_SIZE + 1], int read_size)
 	{
 		if ((*remainder = malloc(read_size + 1)) == 0)
 			return (-1);
-		return (ft_strlcpy(*remainder, buf, read_size + 1));	
+		return (ft_strlcpy(*remainder, buf, read_size + 1));
 	}
 	i = ft_strlen(*remainder) + read_size + 1;
 	if ((temp = malloc(i)) == 0)
@@ -76,7 +75,7 @@ static int	split_and_save(char **remainder, char **line, char *cut_addr)
 	return (1);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static t_info	info;
 	char		*cut_addr;
