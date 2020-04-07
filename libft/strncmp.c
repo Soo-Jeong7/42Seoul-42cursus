@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 22:19:41 by jko               #+#    #+#             */
-/*   Updated: 2020/02/28 22:45:43 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:14:44 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*ss1;
 	unsigned char	*ss2;
 

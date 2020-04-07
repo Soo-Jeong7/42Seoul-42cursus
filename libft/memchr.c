@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:37:58 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 16:43:54 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:13:29 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*s2;
 	unsigned char	c2;
 

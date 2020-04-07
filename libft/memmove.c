@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 00:47:48 by jko               #+#    #+#             */
-/*   Updated: 2020/02/26 01:22:35 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:13:47 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*dst2;
 	unsigned char	*src2;
 

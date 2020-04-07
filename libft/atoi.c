@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 23:39:31 by jko               #+#    #+#             */
-/*   Updated: 2020/02/27 14:56:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:11:32 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static size_t	pass_whitespace(const char *str)
 	return (i);
 }
 
-int		ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
 	size_t	i;
-	int	result;
-	int	sign;
+	int		result;
+	int		sign;
 
 	i = pass_whitespace(str);
 	sign = 1;

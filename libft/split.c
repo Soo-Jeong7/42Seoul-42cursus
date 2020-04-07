@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 13:26:14 by jko               #+#    #+#             */
-/*   Updated: 2020/03/04 09:59:24 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:14:26 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	**fill_words(char *s, int count)
 {
 	size_t	i;
 	char	**result;
-	int	j;
+	int		j;
 
 	if ((result = (char **)malloc(sizeof(char *) * (count + 1))) == 0)
 		return (0);
@@ -94,7 +94,7 @@ char		**ft_split(char const *s, char c)
 {
 	char	**result;
 	char	*s2;
-	int	count;
+	int		count;
 
 	if (s == 0 || (s2 = ft_strdup(s)) == 0)
 		return (0);

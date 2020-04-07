@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 12:19:34 by jko               #+#    #+#             */
-/*   Updated: 2020/02/28 22:32:26 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:13:35 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*ss1;
 	unsigned char	*ss2;
 

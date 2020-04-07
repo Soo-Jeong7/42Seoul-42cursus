@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 00:23:17 by jko               #+#    #+#             */
-/*   Updated: 2020/02/29 01:40:26 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:12:19 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	get_len(int n)
 	return (++len);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	size_t		len;
 	size_t		i;

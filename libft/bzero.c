@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:59:27 by jko               #+#    #+#             */
-/*   Updated: 2020/02/25 20:18:54 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:11:47 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*addr;
 	
 	addr = (unsigned char *)s;

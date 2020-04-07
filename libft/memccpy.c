@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 00:09:15 by jko               #+#    #+#             */
-/*   Updated: 2020/02/26 00:32:51 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 17:13:23 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t		i;
+	size_t			i;
 	unsigned char	*dst2;
 	unsigned char	*src2;
 	unsigned char	c2;
