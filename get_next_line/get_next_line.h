@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:45:02 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:01:05 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:07:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
+#  define BUFFER_SIZE 4096
 # endif
 
 typedef struct	s_info

@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:03:03 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:05:15 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static int	split_and_save(char **remainder, char **line, char *cut_addr)
 int			get_next_line(int fd, char **line)
 {
 	static t_info	info;
-	char		*cut_addr;
-	int		read_size;
+	char			*cut_addr;
+	int				read_size;
 
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (-1);
