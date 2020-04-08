@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:24:27 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:12:58 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/07 18:26:58 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_data
 	const char	*format;
 	int			written_len;
 }				t_data;
- 
+
 typedef struct	s_format_tag
 {
 	bool	left_align;

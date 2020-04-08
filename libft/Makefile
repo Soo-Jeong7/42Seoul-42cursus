@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/03/01 22:27:21 by jko              ###   ########.fr        #
+#    Updated: 2020/04/08 20:33:24 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,50 +15,50 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
-FILES = memset \
-	bzero \
-	memcpy \
-	memccpy \
-	memmove \
-	memchr \
-	memcmp \
-	strlen \
-	strlcpy \
-	strlcat \
-	strchr \
-	strrchr \
-	strnstr \
-	strncmp \
-	atoi \
-	isalpha \
-	isdigit \
-	isalnum \
-	isascii \
-	isprint \
-	toupper \
-	tolower \
-	calloc \
-	strdup \
-	substr \
-	strjoin \
-	strtrim \
-	split \
-	itoa \
-	strmapi \
-	putchar_fd \
-	putstr_fd \
-	putendl_fd \
-	putnbr_fd
+FILES = ft_memset \
+		ft_bzero \
+		ft_memcpy \
+		ft_memccpy \
+		ft_memmove \
+		ft_memchr \
+		ft_memcmp \
+		ft_strlen \
+		ft_strlcpy \
+		ft_strlcat \
+		ft_strchr \
+		ft_strrchr \
+		ft_strnstr \
+		ft_strncmp \
+		ft_atoi \
+		ft_isalpha \
+		ft_isdigit \
+		ft_isalnum \
+		ft_isascii \
+		ft_isprint \
+		ft_toupper \
+		ft_tolower \
+		ft_calloc \
+		ft_strdup \
+		ft_substr \
+		ft_strjoin \
+		ft_strtrim \
+		ft_split \
+		ft_itoa \
+		ft_strmapi \
+		ft_putchar_fd \
+		ft_putstr_fd \
+		ft_putendl_fd \
+		ft_putnbr_fd
 
-FILES_B = lstnew \
-	  lstadd_front \
-	  lstsize \
-	  lstlast \
-	  lstadd_back \
-	  lstdelone \
-	  lstclear \
-	  lstiter \
-	  lstmap
+FILES_B = ft_lstnew \
+		  ft_lstadd_front \
+		  ft_lstsize \
+		  ft_lstlast \
+		  ft_lstadd_back \
+		  ft_lstdelone \
+		  ft_lstclear \
+		  ft_lstiter \
+		  ft_lstmap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
