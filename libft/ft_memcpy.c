@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:50:11 by jko               #+#    #+#             */
-/*   Updated: 2020/04/10 13:39:59 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/10 15:54:01 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*src2;
 
 	if (!dst && !src)
-			return (0);
+		return (0);
 	dst2 = (unsigned char *)dst;
 	src2 = (unsigned char *)src;
 	i = 0;
