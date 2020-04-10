@@ -882,5 +882,6 @@ int main(void)
 		printf("%s\n", "strlcpy error");
 	if (!test_strlcat())
 		printf("%s\n", "strlcat error");
+
 	return (0);
 }

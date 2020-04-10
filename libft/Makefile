@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 16:43:53 by jko               #+#    #+#              #
-#    Updated: 2020/04/08 20:33:24 by jko              ###   ########.fr        #
+#    Updated: 2020/04/10 14:40:36 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,8 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 $(NAME): $(OBJS)
 	ar rcs $@ $^ 
 
-bonus: $(OBJS_B)
-	ar rcs $(NAME) $^
+bonus: $(NAME) $(OBJS_B)
+	ar rcs $(NAME) $(OBJS_B)
 
 all: $(NAME)
 
