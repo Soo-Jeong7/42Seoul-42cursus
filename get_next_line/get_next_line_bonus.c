@@ -6,11 +6,11 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:07:09 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:05:15 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/10 13:21:49 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	join(char **remainder, char buf[BUFFER_SIZE + 1], int read_size)
 {

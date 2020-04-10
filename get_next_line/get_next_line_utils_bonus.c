@@ -6,11 +6,11 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:56:40 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:09:14 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/10 13:22:12 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(char *str, int c)
 {
