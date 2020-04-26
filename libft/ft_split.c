@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 13:26:14 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 17:14:26 by jko              ###   ########.fr       */
+/*   Updated: 2020/04/26 21:15:33 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ static char	**make_blank(char *s)
 {
 	char	**result;
 
-	if ((result = (char **)malloc(sizeof(char *) * 2)) == 0)
-	{
-		free(s);
+	free(s);
+	if (!(result = malloc(sizeof(char *))))
 		return (0);
-	}
-	result[0] = s;
-	result[1] = 0;
+	result[0] = 0;
 	return (result);
 }
 
@@ -71,7 +68,7 @@ static char	**fill_words(char *s, int count)
 	char	**result;
 	int		j;
 
-	if ((result = (char **)malloc(sizeof(char *) * (count + 1))) == 0)
+	if (!(result = malloc(sizeof(char *) * (count + 1))))
 		return (0);
 	i = 0;
 	j = 0;
@@ -96,9 +93,9 @@ char		**ft_split(char const *s, char c)
 	char	*s2;
 	int		count;
 
-	if (s == 0 || (s2 = ft_strdup(s)) == 0)
+	if (!s || !(s2 = ft_strdup(s)))
 		return (0);
-	if (ft_strlen(s) == 0)
+	if (ft_strlen(s2) < 1)
 		return (make_blank(s2));
 	count = get_word_count(s2, c);
 	result = fill_words(s2, count);

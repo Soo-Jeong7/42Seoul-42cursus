@@ -797,22 +797,7 @@ int test_strmapi(void)
 
 
 
-
-
-//int test_listnew()
-//{
-//        char *str = "hello world!";
-//        t_list *new = ft_lstnew(str);
-//        if (new == 0)
-//        {
-//                printf("error\n");
-//                return 1;
-//        }
-//        printf("new = %p\n", new);
-//        printf("content = %s\n", (char *)(new->content));
-//        printf("next = %p\n", new->next);
-//        return 0;
-//}
+char	**ft_split2(char const *s, char c);
 
 int main(void)
 {
@@ -883,5 +868,108 @@ int main(void)
 	if (!test_strlcat())
 		printf("%s\n", "strlcat error");
 
+
+	printf("\n");
+	char **sp = ft_split("", 'z');
+	char **sp2 = ft_split2("", 'z');
+	printf("%p\n", sp);
+	printf("%p\n", sp2);
+	for (int i = 0; sp[i]; ++i) {
+		printf("1 %d = [%s]\n", i, sp[i]);
+		free(sp[i]);
+	}
+	free(sp);
+	for (int i = 0; sp2[i]; ++i) {
+		printf("2 %d = [%s]\n", i, sp2[i]);
+		free(sp2[i]);
+	}
+	free(sp2);
+	sp = 0;
+	sp2 = 0;
+
+	printf("\n");
+	sp = ft_split("cccc", 'c');
+	sp2 = ft_split2("cccc", 'c');
+	printf("%p\n", sp);
+	printf("%p\n", sp2);
+	for (int i = 0; sp[i]; ++i) {
+		printf("1 %d = [%s]\n", i, sp[i]);
+		free(sp[i]);
+	}
+	free(sp);
+	for (int i = 0; sp2[i]; ++i) {
+		printf("2 %d = [%s]\n", i, sp2[i]);
+		free(sp2[i]);
+	}
+	free(sp2);
+	sp = 0;
+	sp2 = 0;
+
+
+
 	return (0);
+}
+
+
+#include "libft.h"
+size_t	ft_strnum(char *s, char c)
+{
+	size_t	i;
+	size_t	num;
+
+	num = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			while (s[i] != c && s[i])
+				i++;
+			num++;
+		}
+		else
+			i++;
+	}
+	return (num);
+}
+
+void	str_malloc_copy(char *s, char c, size_t num, char **res)
+{
+	size_t	x;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	x = 0;
+	while (s[i] && x < num)
+	{
+		len = 0;
+		if (s[i] != c)
+		{
+			while (s[i + len] != c && s[i + len])
+				len++;
+			res[x] = ft_calloc(sizeof(char), len + 1);
+			if (res[x] == 0)
+				return ;
+			ft_strlcpy(res[x], s + i, len + 1);
+			x++;
+		}
+		i += 1 + len;
+	}
+}
+
+char	**ft_split2(char const *s, char c)
+{
+	size_t	num;
+	char	**res;
+
+	if (s == 0)
+		return (0);
+	num = ft_strnum((char *)s, c);
+	res = ft_calloc(sizeof(char *), num + 1);
+	if (res == 0)
+		return (0);
+	res[num] = 0;
+	str_malloc_copy((char *)s, c, num, res);
+	return (res);
 }
