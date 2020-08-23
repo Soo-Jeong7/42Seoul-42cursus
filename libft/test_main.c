@@ -905,6 +905,23 @@ int main(void)
 	sp = 0;
 	sp2 = 0;
 
+	printf("\n");
+	sp = ft_split(0, 'c');
+	sp2 = ft_split2(0, 'c');
+	printf("%p\n", sp);
+	printf("%p\n", sp2);
+	for (int i = 0; sp && sp[i]; ++i) {
+		printf("1 %d = [%s]\n", i, sp[i]);
+		free(sp[i]);
+	}
+	free(sp);
+	for (int i = 0; sp2 && sp2[i]; ++i) {
+		printf("2 %d = [%s]\n", i, sp2[i]);
+		free(sp2[i]);
+	}
+	free(sp2);
+	sp = 0;
+	sp2 = 0;
 
 
 	return (0);
