@@ -24,7 +24,7 @@ static int	recur_putnbr(int n, int fd, int *len)
 	return (1);
 }
 
-int		ft_putnbr_fd(int n, int fd)
+int			ft_putnbr_fd(int n, int fd)
 {
 	int len;
 

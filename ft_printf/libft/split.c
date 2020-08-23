@@ -69,7 +69,7 @@ static char	**fill_words(char *s, int count)
 {
 	size_t	i;
 	char	**result;
-	int	j;
+	int		j;
 
 	if ((result = (char **)malloc(sizeof(char *) * (count + 1))) == 0)
 		return (0);
@@ -94,7 +94,7 @@ char		**ft_split(char const *s, char c)
 {
 	char	**result;
 	char	*s2;
-	int	count;
+	int		count;
 
 	if (s == 0 || (s2 = ft_strdup(s)) == 0)
 		return (0);

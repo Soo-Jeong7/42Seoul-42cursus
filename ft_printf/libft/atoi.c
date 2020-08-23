@@ -22,11 +22,11 @@ static size_t	pass_whitespace(const char *str)
 	return (i);
 }
 
-int		ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
 	size_t	i;
-	int	result;
-	int	sign;
+	int		result;
+	int		sign;
 
 	i = pass_whitespace(str);
 	sign = 1;

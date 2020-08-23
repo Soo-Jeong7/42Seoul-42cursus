@@ -30,14 +30,14 @@ static size_t	get_number_len(long long n, long long base_len)
 	return (++len);
 }
 
-static char	*make_num_str(
+static char		*make_num_str(
 		long long n, size_t len,
 		char *base, size_t base_len)
 {
 	size_t		i;
 	char		*result;
 	long long	n2;
-	
+
 	if ((result = (char *)malloc(sizeof(char) * (len + 1))) == 0)
 		return (0);
 	result[len] = 0;
@@ -57,11 +57,10 @@ static char	*make_num_str(
 	return (result);
 }
 
-char		*ft_lltoa_base(long long n, char *base)
+char			*ft_lltoa_base(long long n, char *base)
 {
 	size_t	len;
 	size_t	base_len;
-
 
 	if (base == 0)
 		base = DIGIT_STR;

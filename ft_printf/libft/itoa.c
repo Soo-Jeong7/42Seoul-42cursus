@@ -30,7 +30,7 @@ static size_t	get_len(long long n)
 	return (++len);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	size_t		len;
 	size_t		i;

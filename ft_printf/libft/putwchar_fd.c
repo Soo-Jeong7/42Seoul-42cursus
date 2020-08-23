@@ -42,7 +42,7 @@ static int	print_utf8_4byte(wint_t c, int fd)
 	return (write(fd, buf, 4));
 }
 
-int	ft_putwchar_fd(wint_t c, int fd)
+int			ft_putwchar_fd(wint_t c, int fd)
 {
 	if (fd < 0)
 		return (ERROR);
