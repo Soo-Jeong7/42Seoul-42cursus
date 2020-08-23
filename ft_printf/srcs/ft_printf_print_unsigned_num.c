@@ -84,7 +84,13 @@ int			ft_printf_pointer(t_format_tag *tag, t_data *data)
 		return (ERROR);
 	addr = va_arg(data->ap, size_t);
 	tag->sharp = true;
-	str = ft_ulltoa_base((unsigned long)addr, HEX_STR);
+	if (addr == 0 && tag->precision == 0)
+	{
+		if (!(str = ft_strdup("")))
+			return (ERROR);
+	}
+	else
+		str = ft_ulltoa_base((unsigned long)addr, HEX_STR);
 	result = print_unsigned_num(&str, tag, data, false);
 	free(str);
 	return (result);
