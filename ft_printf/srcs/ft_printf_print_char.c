@@ -61,7 +61,7 @@ static int	print_char(char c, t_format_tag *tag, t_data *data)
 	return (len);
 }
 
-int		ft_printf_percent(t_format_tag *tag, t_data *data)
+int			ft_printf_percent(t_format_tag *tag, t_data *data)
 {
 	int	result;
 
@@ -71,7 +71,7 @@ int		ft_printf_percent(t_format_tag *tag, t_data *data)
 	return (result);
 }
 
-int		ft_printf_char(t_format_tag *tag, t_data *data)
+int			ft_printf_char(t_format_tag *tag, t_data *data)
 {
 	int		c;
 	wint_t	wc;

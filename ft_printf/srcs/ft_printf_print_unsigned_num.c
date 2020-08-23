@@ -47,7 +47,8 @@ static int	print_unsigned_num(
 	return (ft_putstr_fd(*str, 1));
 }
 
-int			ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base)
+int			ft_printf_unsigned_number(
+	t_format_tag *tag, t_data *data, char *base)
 {
 	char				*str;
 	unsigned long long	arg;

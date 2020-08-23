@@ -34,7 +34,6 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 		return (ft_printf_signed_number(tag, data));
 	else if (tag->specifier == 'e' || tag->specifier == 'E')
 		return (ft_printf_signed_number(tag, data));
-		//return (ft_printf_scientific_notation(tag, data));
 	else if (tag->specifier == 'n')
 		return (ft_printf_count(tag, data));
 	return (ERROR);

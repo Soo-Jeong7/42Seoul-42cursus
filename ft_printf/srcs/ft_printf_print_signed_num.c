@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-static bool	add_sign(char **str, size_t *len, t_format_tag *tag, bool is_negative)
+static bool	add_sign(char **str, size_t *len,
+	t_format_tag *tag, bool is_negative)
 {
 	char	*temp;
 
