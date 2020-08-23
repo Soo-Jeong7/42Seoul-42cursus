@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/03/22 17:46:13 by jko              ###   ########.fr        #
+#    Updated: 2020/08/23 19:23:15 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_B)))
 
 
 $(NAME): $(LIBFT) $(OBJS)
+	cp $(LIBFT) $(NAME)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 
 bonus: $(OBJS_B)

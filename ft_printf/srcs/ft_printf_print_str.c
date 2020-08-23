@@ -68,31 +68,3 @@ int			ft_printf_str(t_format_tag *tag, t_data *data)
 	free(str);
 	return (result);
 }
-
-int			ft_printf_pointer(t_format_tag *tag, t_data *data)
-{
-	char	*str;
-	size_t	addr;
-	int		result;
-	int		i;
-
-	if (!tag || !data)
-		return (ERROR);
-	addr = va_arg(data->ap, size_t);
-	i = !addr ? 4 : 12;
-	if (!(str = malloc(i)))
-		return (ERROR);
-	str[0] = '0';
-	str[1] = 'x';
-	str[i - 1] = NULL_CHAR;
-	i -= 2;
-	while (i > 1)
-	{
-		str[i] = HEX_STR[addr % 16];
-		addr /= 16;
-		i--;
-	}
-	result = print_str(&str, tag, data);
-	free(str);
-	return (result);
-}

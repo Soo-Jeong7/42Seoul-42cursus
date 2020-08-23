@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:23:58 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:15:06 by jko              ###   ########.fr       */
+/*   Updated: 2020/08/23 18:53:18 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	ft_printf_format(t_format_tag *tag, t_data *data)
 	else if (tag->specifier == 'd' || tag->specifier == 'i')
 		return (ft_printf_signed_number(tag, data));
 	else if (tag->specifier == 'e' || tag->specifier == 'E')
-		return (ft_printf_scientific_notation(tag, data));
+		return (ft_printf_signed_number(tag, data));
+		//return (ft_printf_scientific_notation(tag, data));
 	else if (tag->specifier == 'n')
 		return (ft_printf_count(tag, data));
 	return (ERROR);

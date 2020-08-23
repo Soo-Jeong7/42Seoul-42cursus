@@ -72,3 +72,19 @@ int			ft_printf_unsigned_number(t_format_tag *tag, t_data *data, char *base)
 	free(str);
 	return (result);
 }
+
+int			ft_printf_pointer(t_format_tag *tag, t_data *data)
+{
+	char	*str;
+	size_t	addr;
+	int		result;
+
+	if (!tag || !data)
+		return (ERROR);
+	addr = va_arg(data->ap, size_t);
+	tag->sharp = true;
+	str = ft_ulltoa_base((unsigned long)addr, HEX_STR);
+	result = print_unsigned_num(&str, tag, data, false);
+	free(str);
+	return (result);
+}

@@ -6,54 +6,25 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:28:46 by jko               #+#    #+#             */
-/*   Updated: 2020/04/07 18:19:06 by jko              ###   ########.fr       */
+/*   Updated: 2020/08/23 21:56:14 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	add_minus_sign(char **str, size_t *len)
-{
-	char	*sign_addr;
-	char	*temp;
-	char	c;
-
-	if (!str || !*str)
-		return (ERROR);
-	if (!(sign_addr = ft_strchr(*str, '-')))
-		return (false);
-	if ((*str)[0] == '0')
-	{
-		if (!(temp = malloc(*len + 2)))
-			return (ERROR);
-		*len += 1;
-		temp[0] = '0';
-		ft_strlcpy(temp + 1, *str, *len);
-		free(*str);
-		*str = temp;
-		if (!(sign_addr = ft_strchr(*str, '-')))
-			return (ERROR);
-	}
-	c = *sign_addr;
-	*sign_addr = (*str)[0];
-	(*str)[0] = c;
-	return (true);
-}
-
-static bool	add_sign(char **str, size_t *len, t_format_tag *tag)
+static bool	add_sign(char **str, size_t *len, t_format_tag *tag, bool is_negative)
 {
 	char	*temp;
-	int		res;
 
 	if (!str || !*str || !tag)
 		return (false);
-	if ((res = add_minus_sign(str, len)) == true
-			|| (!tag->sign && !tag->sign_space))
+	if (!tag->sign && !tag->sign_space && !is_negative)
 		return (true);
-	if (res == ERROR || !(temp = malloc(*len + 2)))
+	if (!(temp = malloc(*len + 2)))
 		return (false);
 	*len += 1;
 	temp[0] = tag->sign ? '+' : ' ';
+	temp[0] = is_negative ? '-' : temp[0];
 	ft_strlcpy(temp + 1, *str, *len);
 	free(*str);
 	*str = temp;
@@ -84,13 +55,22 @@ static int	print_signed_num(
 {
 	size_t	len;
 	bool	is_negative;
+	char	*temp;
 
 	if (!str || !*str || !tag || !data)
 		return (ERROR);
-	is_negative = ((*str)[0] == '-') ? true : false;
+	is_negative = false;
+	if ((*str)[0] == '-')
+	{
+		is_negative = true;
+		if (!(temp = ft_strdup((*str) + 1)))
+			return (ERROR);
+		free(*str);
+		*str = temp;
+	}
 	len = ft_strlen(*str);
 	if (!apply_precision(str, &len, tag)
-			|| !add_sign(str, &len, tag)
+			|| !add_sign(str, &len, tag, is_negative)
 			|| !apply_alignment(str, &len, tag)
 			|| (tag->precision < 0 &&
 				!move_sign(*str, tag, is_negative)))

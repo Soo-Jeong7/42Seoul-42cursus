@@ -127,7 +127,7 @@ int main(void)
 	result_r =    printf("r = [%10lc]\n", L'\0');
 	result_f = ft_printf("f = [%10lc]\n", L'\0');
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
-	
+
 	result_r =    printf("r = [%10lc]\n", L"안녕하세요."[1]);
 	result_f = ft_printf("f = [%10lc]\n", L"안녕하세요."[1]);
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
@@ -142,6 +142,12 @@ int main(void)
 	printf("result_f = %d\nresult_r = %d\n\n", result_f, result_r);
 
 
+	printf("aaaaaaaaaaaaaaaaaaaaa\n\n");
+	ft_printf("%10p\n", "ptr");
+	printf("%10p\n", "ptr");
+	printf("aaaaaaaaaaaaaaaaaaaaa\n\n");
+	ft_printf("%*.p\n", -15, "ptr");
+	printf("%*.p\n", -15, "ptr");
 
 	system("leaks a.out > leaks_result && cat leaks_result | grep leaked");
 	return 0;

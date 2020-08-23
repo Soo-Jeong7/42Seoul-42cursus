@@ -57,7 +57,7 @@ static bool	apply_precision2(char **str, size_t *len, t_format_tag *tag)
 			*str = temp;
 			*len = tag->precision;
 		}
-		else if (tag->precision == 0)
+		else if (tag->precision == 0 && *str[0] == '0')
 		{
 			if (!(temp = ft_strdup("")))
 				return (false);
@@ -104,11 +104,11 @@ bool		apply_flag_sharp(
 		return (false);
 	if (!tag->sharp)
 		return (true);
-	if (ft_strchr("xX", tag->specifier) && !is_zero)
+	if (ft_strchr("xXp", tag->specifier) && !is_zero)
 	{
 		if (!(temp = malloc(*len + 3)))
 			return (false);
-		ft_strlcpy(temp, tag->specifier == 'x' ? "0x" : "0X", 3);
+		ft_strlcpy(temp, ft_strchr("px", tag->specifier) ? "0x" : "0X", 3);
 		ft_strlcpy(temp + 2, *str, *len + 1);
 		free(*str);
 		*str = temp;
