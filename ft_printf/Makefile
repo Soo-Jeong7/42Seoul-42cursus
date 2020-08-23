@@ -6,7 +6,7 @@
 #    By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 16:52:44 by jko               #+#    #+#              #
-#    Updated: 2020/08/23 19:23:15 by jko              ###   ########.fr        #
+#    Updated: 2020/08/24 00:11:49 by jko              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,27 +30,20 @@ FILES = ft_printf \
 	ft_printf_print_char \
 	ft_printf_print_unsigned_num \
 	ft_printf_print_signed_num \
-	ft_printf_print_scientific_notation \
 	ft_printf_count \
 	ft_printf_flags
 
-FILES_B = $(addsuffix _bonus, $(FILES))
-
 SRC_DIR = ./srcs/
 SRCS = $(addprefix ($SRC_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B = $(addprefix ($SRC_DIR), $(addsuffix .c, $(FILES_B)))
 
 OBJ_DIR = ./objs/
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
-OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_B)))
-
 
 $(NAME): $(LIBFT) $(OBJS)
 	cp $(LIBFT) $(NAME)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 
-bonus: $(OBJS_B)
-	$(AR) $(ARFLAGS) $(NAME) $^
+bonus: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -63,7 +56,7 @@ $(LIBFT):
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_B)
+	$(RM) $(OBJS)
 	$(MAKE) -C ./libft clean
 
 fclean: clean
@@ -71,9 +64,9 @@ fclean: clean
 	$(MAKE) -C ./libft fclean
 	$(RM) -r a.out a.out.dSYM leaks_result
 
-re: clean all
+re: fclean all
 
-test: $(NAME)
+jko_test: $(NAME)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_FLAGS) test_main.c && ./a.out
 
-.PHONY: test bonus all clean fclean re
+.PHONY: jko_test bonus all clean fclean re

@@ -148,6 +148,13 @@ int main(void)
 	printf("aaaaaaaaaaaaaaaaaaaaa\n\n");
 	ft_printf("%*.p\n", -15, "ptr");
 	printf("%*.p\n", -15, "ptr");
+	printf("aaaaaaaaaaaaaaaaaaaaa\n\n");
+	ft_printf("%.p\n", NULL);
+	printf("%.p\n", NULL);
+
+
+
+
 
 	system("leaks a.out > leaks_result && cat leaks_result | grep leaked");
 	return 0;

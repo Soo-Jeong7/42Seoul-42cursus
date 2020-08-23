@@ -6,7 +6,7 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:17:49 by jko               #+#    #+#             */
-/*   Updated: 2020/03/21 21:58:03 by jko              ###   ########.fr       */
+/*   Updated: 2020/08/24 00:02:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char		*ft_wchars_to_str(const wchar_t *ws)
 	size_t	len;
 	size_t	i;
 	size_t	j;
-	int	temp;
+	int		temp;
 
 	if (!ws)
 		return (NULL_POINTER);

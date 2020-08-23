@@ -6,13 +6,14 @@
 /*   By: jko <jko@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 20:51:59 by jko               #+#    #+#             */
-/*   Updated: 2020/03/16 20:54:44 by jko              ###   ########.fr       */
+/*   Updated: 2020/08/24 00:01:43 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_unsigned_number_len(unsigned long long n, unsigned long long base_len)
+static size_t	get_unsigned_number_len(
+				unsigned long long n, unsigned long long base_len)
 {
 	size_t			len;
 
@@ -25,7 +26,7 @@ static size_t	get_unsigned_number_len(unsigned long long n, unsigned long long b
 	return (++len);
 }
 
-char		*ft_ulltoa_base(unsigned long long n, char *base)
+char			*ft_ulltoa_base(unsigned long long n, char *base)
 {
 	size_t	len;
 	size_t	base_len;
